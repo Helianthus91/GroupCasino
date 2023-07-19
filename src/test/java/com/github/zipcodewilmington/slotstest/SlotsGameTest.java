@@ -1,7 +1,6 @@
 package com.github.zipcodewilmington.slotstest;
 
-import com.github.zipcodewilmington.casino.games.slots.SlotsPlayer;
-import org.junit.Assert;
+import com.github.zipcodewilmington.casino.games.gamblingGames.slots.SlotsPlayer;
 import org.junit.Test;
 
 public class SlotsGameTest {
