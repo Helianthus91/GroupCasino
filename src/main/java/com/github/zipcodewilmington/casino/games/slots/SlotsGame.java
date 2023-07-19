@@ -10,23 +10,44 @@ public class SlotsGame {
 
     public SlotsPlayer player;
 
+    private int bet;
+
+    private int winnings;
+
     private String slotResult;
 
 
 
 
 
-    public void addPlayer(SlotsPlayer player){
+    public void add(SlotsPlayer player){
         this.player = player;
+    }
+
+    public void remove(SlotsPlayer player){
+        this.player = null;
+    }
+
+    public void run(){
+
+    }
+
+    public void gameIntro(){
+        System.out.println("Welcome to SLOTS");
+    }
+
+    public void playerBet(){
+
     }
 
     public String slotTurn(){
         Random rand = new Random();
 
+
         return "";
     }
 
-    public void setSlotResult(){
+    public void slotResult(){
 
     }
 
