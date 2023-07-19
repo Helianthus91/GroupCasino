@@ -26,7 +26,7 @@ public class WordGuessGameTests {
         //given
         WordGuessGame wordGuess = new WordGuessGame();
         char[] expected = new char[]{'p','u','r','p','l','e'};
-        String wordString = "Purple";
+        String wordString = "purple";
 
         //when
         wordGuess.setWord(purple);
@@ -35,12 +35,6 @@ public class WordGuessGameTests {
         //then
         Assert.assertEquals(expected, actual);
     }
-
-
-
-
-
-
 
 
 
