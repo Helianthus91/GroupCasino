@@ -2,7 +2,7 @@ package com.github.zipcodewilmington.casino.games.gamblingGames;
 
 public interface GamblingGameInterface {
 
-    int playerBet();
+    void playerBet();
 
     int calculateWinner();
 
