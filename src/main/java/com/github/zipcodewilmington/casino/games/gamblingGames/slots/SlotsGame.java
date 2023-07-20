@@ -28,8 +28,8 @@ public class SlotsGame extends GamblingGame {
     private boolean playing = true;
 
 
-    public void add(SlotsPlayer player){
-        this.player = player;
+    public void add(){
+        this.player = new SlotsPlayer();
     }
 
     public void remove(SlotsPlayer player){
@@ -37,6 +37,7 @@ public class SlotsGame extends GamblingGame {
     }
 
     public void run(){
+        add();
         intro();
 
 
@@ -56,7 +57,7 @@ public class SlotsGame extends GamblingGame {
             calculateWinnings();
             // Update player balance with new bet
             // updateBalance();
-
+            updateBalance();
             quitAsk();
         }
 
