@@ -24,6 +24,7 @@ public class WordGuessGame extends CasualGame {
     public void run() {
         repeatGame = true;
         while (repeatGame){
+
         game = true;
         intro();
         word = getRandomWord();
@@ -31,16 +32,12 @@ public class WordGuessGame extends CasualGame {
         System.out.println(correctWord);
         setEmptyArray();
 
-
         while(game) {
             printOutTheGuess();
             guess = getUserGuess();
-            if (guess == '-'){
-                game = false;
-                break;
-            }
+            if (guess == '-'){game = false; repeatGame = false; break; }
             checkGuess();
-            //ugly checker method
+
             String checker = String.valueOf(guess);
             if (!Arrays.toString(correctWord).contains(checker)) {
                 incrementRemainingGuesses();
@@ -157,12 +154,7 @@ public class WordGuessGame extends CasualGame {
             amountOfGuesses--;
         }
 
-        public void checkWin(){
-        if(this.currentGuess == this.correctWord){
-            System.out.format("You have guessed the correct word! %s", Arrays.toString(correctWord));
-            game = false;
-        }
-        }
+
     }
 
 
