@@ -10,12 +10,14 @@ public class SlotsPlayer {
 
     private int balance;
 
+    private CasinoAccount arcadeAccount;
+
     public SlotsPlayer(){
 
     }
 
     public SlotsPlayer(int balance){
-        this.balance = balance;
+        this.balance = CasinoAccount.getBalance();
 
     }
 

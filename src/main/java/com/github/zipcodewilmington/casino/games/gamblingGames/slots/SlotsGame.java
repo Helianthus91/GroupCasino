@@ -4,6 +4,7 @@ package com.github.zipcodewilmington.casino.games.gamblingGames.slots;
 import com.github.zipcodewilmington.casino.games.gamblingGames.GamblingGame;
 import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
+import com.github.zipcodewilmington.casino.games.gamblingGames.slots.SlotsPlayer;
 
 import java.util.Random;
 
