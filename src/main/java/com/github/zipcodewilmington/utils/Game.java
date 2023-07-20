@@ -8,6 +8,7 @@ import java.util.List;
 
 public abstract class Game implements GameInterface {
     public List<PlayerInterface> players;
+    protected IOConsole console = new IOConsole(AnsiColor.PURPLE);
 
 
     public Game(List<PlayerInterface> players) {
@@ -16,6 +17,10 @@ public abstract class Game implements GameInterface {
 
     public Game() {
         this(new ArrayList<>());
+    }
+    public Game(List<PlayerInterface> players, IOConsole console){
+        this.players = players;
+        this.console = new IOConsole(AnsiColor.PURPLE);
     }
 
     public List<PlayerInterface> getPlayers(){
