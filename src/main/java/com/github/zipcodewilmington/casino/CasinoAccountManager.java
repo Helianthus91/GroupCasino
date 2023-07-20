@@ -57,6 +57,7 @@ public class CasinoAccountManager {
      */
     public CasinoAccount createAccount(String accountName, String accountPassword) {
        CasinoAccount account = new CasinoAccount(accountName, accountPassword);
+       account.setBalance(100);
        console.println("Account created successfully");
        return account;
     }

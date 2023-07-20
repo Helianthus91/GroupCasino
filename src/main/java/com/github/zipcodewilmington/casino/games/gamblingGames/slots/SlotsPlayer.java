@@ -1,31 +1,22 @@
 package com.github.zipcodewilmington.casino.games.gamblingGames.slots;
 
 import com.github.zipcodewilmington.casino.CasinoAccount;
+import com.github.zipcodewilmington.casino.PlayerInterface;
 
 /**
  * Created by leon on 7/21/2020.
  */
-public class SlotsPlayer {
+public class SlotsPlayer implements PlayerInterface {
 
-    private int bet;
-    private int balance;
+
+    private int balance = 0;
+
+    private CasinoAccount arcadeAccount;
+
 
     public SlotsPlayer(){
+        this.balance = CasinoAccount.getBalance();
 
-    }
-
-    public SlotsPlayer(int balance){
-        this.balance = balance;
-
-    }
-
-    public void setBet(int bet){
-        this.bet = bet;
-
-    }
-
-    public int getBet(){
-        return bet;
     }
 
     public void setBalance(int balance){
@@ -36,8 +27,14 @@ public class SlotsPlayer {
         return balance;
     }
 
-    public void getArcadeAccount(){
+    public CasinoAccount getArcadeAccount(){
 
+        return null;
+    }
+
+    @Override
+    public <SomeReturnType> SomeReturnType play() {
+        return null;
     }
 
 }
