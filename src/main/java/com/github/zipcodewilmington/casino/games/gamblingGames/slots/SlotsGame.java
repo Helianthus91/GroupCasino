@@ -55,7 +55,7 @@ public class SlotsGame extends GamblingGame {
             // Update bet based on result of spin
             calculateWinnings();
             // Update player balance with new bet
-            updateBalance();
+            // updateBalance();
 
             quitAsk();
         }
