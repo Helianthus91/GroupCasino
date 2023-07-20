@@ -7,25 +7,18 @@ import com.github.zipcodewilmington.casino.CasinoAccount;
  */
 public class SlotsPlayer {
 
-    private int bet;
+
     private int balance;
+
+    private CasinoAccount arcadeAccount;
 
     public SlotsPlayer(){
 
     }
 
     public SlotsPlayer(int balance){
-        this.balance = balance;
+        this.balance = CasinoAccount.getBalance();
 
-    }
-
-    public void setBet(int bet){
-        this.bet = bet;
-
-    }
-
-    public int getBet(){
-        return bet;
     }
 
     public void setBalance(int balance){

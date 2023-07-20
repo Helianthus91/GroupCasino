@@ -36,33 +36,5 @@ public class SlotsPlayerTest {
         Assert.assertEquals(expected, actual);
     }
 
-    @Test
-    public void getBetTest(){
-        // Given
-        int expected = 5;
 
-        // When
-        SlotsPlayer player = new SlotsPlayer();
-        player.setBet(5);
-
-        int actual = player.getBet();
-
-        // Then
-        Assert.assertEquals(expected, actual);
-    }
-
-    @Test
-    public void setBetTest(){
-        // Given
-        int expected = 5;
-
-        // When
-        SlotsPlayer player = new SlotsPlayer();
-        player.setBet(5);
-
-        int actual = player.getBet();
-
-        // Then
-        Assert.assertEquals(expected, actual);
-    }
 }
