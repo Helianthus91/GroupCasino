@@ -9,6 +9,8 @@ public class CasinoAccount {
     private String name;
     private String password;
 
+    private int balance = 100;
+
     public CasinoAccount(String name, String password) {
         this.name = name;
         this.password = password;
@@ -28,6 +30,14 @@ public class CasinoAccount {
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public int getBalance(){
+        return balance;
+    }
+
+    public void setBalance(int balance){
+        this.balance = balance;
     }
 
     @Override

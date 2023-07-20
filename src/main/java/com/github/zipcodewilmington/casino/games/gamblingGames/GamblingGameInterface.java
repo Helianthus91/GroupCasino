@@ -4,7 +4,7 @@ public interface GamblingGameInterface {
 
     void playerBet();
 
-    int calculateWinner();
+    int calculateWinnings();
 
     void updateBalance();
 
