@@ -34,14 +34,19 @@ public class BlackJackGame extends GamblingGame {
     }
 
     @Override
-    public int playerBet() {
-        int theBet = player.placeBet();
-        return theBet;
+    public void playerBet() {
+//        int theBet = player.placeBet();
+
+    }
+
+    @Override
+    public int calculateWinnings() {
+        return 0;
     }
 
     @Override
     public int calculateWinner() {
-        return 0;
+        return 2;
     }
 
     @Override
