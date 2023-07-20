@@ -28,12 +28,6 @@ public class SlotsGame extends GamblingGame {
     private boolean playing = true;
 
 
-    public static void main(String[] args) throws InterruptedException {
-        new SlotsGame().run();
-    }
-
-
-
     public void add(SlotsPlayer player){
         this.player = player;
     }

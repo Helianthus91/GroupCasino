@@ -9,7 +9,7 @@ public class CasinoAccount {
     private String name;
     private String password;
 
-    private int balance = 100;
+    private static int balance = 100;
 
     public CasinoAccount(String name, String password) {
         this.name = name;
@@ -32,12 +32,12 @@ public class CasinoAccount {
         this.password = password;
     }
 
-    public int getBalance(){
+    public static int getBalance(){
         return balance;
     }
 
     public void setBalance(int balance){
-        this.balance = balance;
+        CasinoAccount.balance = balance;
     }
 
     @Override
