@@ -9,7 +9,7 @@ import com.github.zipcodewilmington.casino.PlayerInterface;
 public class SlotsPlayer implements PlayerInterface {
 
 
-    private int balance;
+    private int balance = 0;
 
     private CasinoAccount arcadeAccount;
 
