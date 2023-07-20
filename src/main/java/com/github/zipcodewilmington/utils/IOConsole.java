@@ -65,6 +65,13 @@ public class IOConsole {
         }
     }
 
+    public static Character getCharInput(String prompt) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(prompt);
+        char c = scanner.nextLine().charAt(0);
+        return c;
+    }
+
     public Integer getIntegerInput(String prompt, Object... args) {
         String stringInput = getStringInput(prompt, args);
         try {
