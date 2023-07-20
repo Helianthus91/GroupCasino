@@ -29,7 +29,7 @@ public class WordGuessGameTests {
         String wordString = "purple";
 
         //when
-        wordGuess.setWord(purple);
+        wordGuess.setWord(wordString);
         char[] actual = wordGuess.getWord();
 
         //then

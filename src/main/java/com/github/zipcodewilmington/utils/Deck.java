@@ -30,12 +30,5 @@ public class Deck
         }
     }
 
-    static void run(){
-        Deck deck = new Deck();
-    }
-
-    public static void main(String[] args) {
-        Deck.run();
-    }
 
 }
