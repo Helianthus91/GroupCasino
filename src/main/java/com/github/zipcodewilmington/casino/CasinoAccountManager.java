@@ -4,6 +4,10 @@ import com.github.zipcodewilmington.Casino;
 import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -34,6 +38,7 @@ public class CasinoAccountManager {
      */
 
     public CasinoAccount getAccount(String accountName, String accountPassword) {
+        List<CasinoAccount> accounts = readTheAccountsFile();
        for(CasinoAccount account : accounts){
            String acctName = account.getName();
            String acctPassword = account.getPassword();
@@ -48,6 +53,35 @@ public class CasinoAccountManager {
        return null;
     }
 
+    public List<CasinoAccount> readTheAccountsFile(){
+        List<CasinoAccount> accounts = new ArrayList<>();
+
+
+        try (BufferedReader theFileReader = new BufferedReader(new FileReader("accounts.txt"))) {
+            String line;
+            while ((line = theFileReader.readLine()) != null) {
+                // Split the line
+                String[] accountInfo = line.split(",");
+                if (accountInfo.length == 3) {
+                    String accountName = accountInfo[0];
+                    String accountPassword = accountInfo[1];
+                    int balance = Integer.parseInt(accountInfo[2]);
+
+                    // Make object with the account
+                    CasinoAccount account = new CasinoAccount(accountName, accountPassword);
+                    account.setBalance(balance);
+
+                    accounts.add(account);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return accounts;
+
+    }
+
+
     /**
      * logs & creates a new `ArcadeAccount`
      *
@@ -58,7 +92,15 @@ public class CasinoAccountManager {
     public CasinoAccount createAccount(String accountName, String accountPassword) {
        CasinoAccount account = new CasinoAccount(accountName, accountPassword);
        account.setBalance(100);
-       console.println("Account created successfully");
+        console.println("Account created successfully");
+
+       try (FileWriter writer = new FileWriter("accounts.txt", true)){
+           String accountInfo = account.getName() + "," + account.getPassword() + "," + CasinoAccount.getBalance() + "\n";
+           writer.write(accountInfo);
+       } catch (IOException exception){
+           exception.printStackTrace();
+       }
+
        return account;
     }
 
