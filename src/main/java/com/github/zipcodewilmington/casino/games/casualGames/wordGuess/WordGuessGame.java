@@ -29,8 +29,8 @@ public class WordGuessGame extends CasualGame {
         intro();
         word = getRandomWord();
         correctWord = setTheWord(word);
-        amountOfGuesses = getAmountOfGuesses();
-        currentGuess = getCurrentGuessArray();
+        amountOfGuesses = getAmountOfGuesses(correctWord);
+        currentGuess = getCurrentGuessArray(correctWord);
         System.out.println(correctWord);
         setEmptyArray();
 
@@ -118,11 +118,11 @@ public class WordGuessGame extends CasualGame {
         return  word.toCharArray();
     }
 
-    public int getAmountOfGuesses(){
+    public int getAmountOfGuesses(char[] correctWord){
         return correctWord.length;
     }
-    public char[] getCurrentGuessArray(){
-        return new char[correctWord.length];
+    public char[] getCurrentGuessArray(char[] word){
+        return new char[word.length];
     }
 
     public void setEmptyArray(){

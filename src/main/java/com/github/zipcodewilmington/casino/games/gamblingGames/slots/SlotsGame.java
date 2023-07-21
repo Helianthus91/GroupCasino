@@ -18,7 +18,7 @@ public class SlotsGame extends GamblingGame {
 
     private int bet;
 
-    private String[] slotOptions = new String[]{"*", "~", "@", "#", "o", "+"};
+    private String[] slotOptions = new String[]{"***", "~~~", "###", "ooo", "+++"};
 
     private String[] slotResult = new String[3];
 
@@ -136,19 +136,19 @@ public class SlotsGame extends GamblingGame {
             for (int i = 0; i < slotOptions.length; i++){
                 colorConsole.print(slotOptions[i]);
                 Thread.sleep(100);
-                System.out.print("\b");
+                System.out.print("\b\b\b");
             }
             for (int i = 0; i < slotOptions.length; i++){
                 System.out.print(slotOptions[i]);
                 Thread.sleep(100);
-                System.out.print("\b");
+                System.out.print("\b\b\b");
             }
             for (int i = 0; i < slotOptions.length; i++){
                 System.out.print(slotOptions[i]);
                 Thread.sleep(100);
-                System.out.print("\b");
+                System.out.print("\b\b\b");
             }
-            Thread.sleep(200);
+            Thread.sleep(100);
             colorConsole.print(s + " ");
             Thread.sleep(500);
         }

@@ -28,6 +28,17 @@ class WordGuessGameTest {
 
     @Test
     void getAmountOfGuesses() {
+        //given
+        WordGuessGame wordGuessGame = new WordGuessGame();
+        char[] charArray = new char[]{'b','o','b'};
+        int expected = 3;
+
+        //when
+        int actual = wordGuessGame.getAmountOfGuesses(charArray);
+
+        //then
+        Assert.assertEquals(expected, actual);
+
     }
 
     @Test
