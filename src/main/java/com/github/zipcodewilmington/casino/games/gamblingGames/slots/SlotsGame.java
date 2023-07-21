@@ -98,6 +98,11 @@ public class SlotsGame extends GamblingGame {
         }
     }
 
+    @Override
+    public int calculateWinner() {
+        return 0;
+    }
+
     public void updateBalance(){
         int newBalance = player.getBalance() + bet;
         player.setBalance(newBalance);
