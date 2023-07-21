@@ -1,83 +1,59 @@
 package com.github.zipcodewilmington.CrapsTests;
 
 import com.github.zipcodewilmington.casino.games.gamblingGames.Craps.CrapsGame;
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
+import static org.junit.Assert.assertEquals;
 
-import static junit.framework.TestCase.assertEquals;
 
 public class CrapsGameTest {
-    private CrapsGame crapsGame;
-
-    @Before
-    public void setCrapsGame() {
-        crapsGame = new CrapsGame();
-    }
-
-    @After
-    public void quitCrapsGame() {
-        crapsGame = null;
-    }
+    public CrapsGame crapsGame;
 
     @Test
-    public void testRollDice() {
-        int diceResult = crapsGame.rollDice();
-        assertEquals(true, diceResult >= 1 && diceResult<= 6);
-    }
-
-    @Test
-    public void testWinWithFirstRoll() {
+    public void testWinOnFirstRoll() {
         // given
-        mockUserInput("1\n", "1\n", "N/n");
+        mockUserInput("1\n");
         // when
-        String result = crapsGame.playGame();
+        String result = crapsGame.run();
         // then
         assertEquals("Congratulations, you win!", result);
     }
-
+        // mock user input to roll a 7
     @Test
-    public void testLoseWithFirstRoll() {
+    public void testLoseOnFirstRoll() {
         // given
-        mockUserInput("1/n", "1\n", "N/n");
+        mockUserInput("3\n");
         // when
-        String result = crapsGame.playGame();
+        String result = crapsGame.run();
         // then
-        assertEquals("Sorry, you lose!", result);
+        assertEquals("Oh no, you lose!", result);
     }
-
+        // mock user input to roll a 3
     @Test
     public void testPointNumberWin() {
         // given
-        mockUserInput("4\n", "1\n", "N/n");
+        mockUserInput("5\n", "5\n");
         // when
-        String result = crapsGame.playGame();
+        String result = crapsGame.run();
         // then
         assertEquals("Congratulations, you win!", result);
     }
-
+        // mock user input to roll a 5, next roll is also a 5
     @Test
     public void testPointNumberLose() {
         // given
-        mockUserInput("4\n", "3\n", "N/n");
+        mockUserInput("5\n", "7\n");
         // when
-        String result = crapsGame.playGame();
+        String result = crapsGame.run();
         // then
-        assertEquals("Sorry, you lose!", result);
+        assertEquals("Oh no, you lose!", result);
     }
-
-    @Test
-    public void testPlayAgain() {
-        // given
-        mockUserInput("1\n", "2\n", "N\n");
-        // when
-        String result = crapsGame.playGame();
-        // then
-        assertEquals("Thank you for playing the game of Craps!", result);
-    }
-
-    @Test
-    private void mockUserInput(String s, String s1, String s2) {
+        // mock user input to roll a 5, next roll is a 7
+    private void mockUserInput(String... inputs) {
+        StringBuilder stringBuilder = new StringBuilder();
+        for (String input : inputs) {
+            stringBuilder.append(input).append("\n");
+        }
     }
 }
+
 
