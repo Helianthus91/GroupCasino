@@ -12,6 +12,8 @@ import com.github.zipcodewilmington.casino.games.casualGames.wordGuess.WordGuess
 import com.github.zipcodewilmington.casino.games.casualGames.wordGuess.WordGuessPlayer;
 import com.github.zipcodewilmington.casino.games.gamblingGames.Craps.CrapsGame;
 import com.github.zipcodewilmington.casino.games.gamblingGames.Craps.CrapsPlayer;
+import com.github.zipcodewilmington.casino.games.gamblingGames.Roulette.RouletteGame;
+import com.github.zipcodewilmington.casino.games.gamblingGames.Roulette.RoulettePlayer;
 import com.github.zipcodewilmington.casino.games.gamblingGames.slots.SlotsGame;
 import com.github.zipcodewilmington.casino.games.gamblingGames.slots.SlotsPlayer;
 import com.github.zipcodewilmington.utils.AnsiColor;
@@ -38,19 +40,18 @@ public class Casino implements Runnable {
                     String gameSelectionInput = getGameSelectionInput().toUpperCase();
                     if ("SLOTS".equals(gameSelectionInput)) {
                         play(new SlotsGame(), new SlotsPlayer());
-                    } else if ("BlackJack".equalsIgnoreCase(gameSelectionInput)) {
-                        play(new BlackJackGame(), new BlackJackPlayer());
                     } else if ("WordGuess".equalsIgnoreCase(gameSelectionInput)) {
                         play(new WordGuessGame(), new WordGuessPlayer());
-                    } else if ("Craps".equalsIgnoreCase(gameSelectionInput)) {
+                    } else if ("Roulette".equalsIgnoreCase(gameSelectionInput)) {
+                        play(new RouletteGame(), new RoulettePlayer());
+                    }else if ("Craps".equalsIgnoreCase(gameSelectionInput)) {
                         play(new CrapsGame(), new CrapsPlayer());
-                    } else {
-
-                        console.println("[ %s ] is an invalid game selection. Returning to main menu.");
+                    }else {
+                        console.println("[ %s ] is an invalid game selection. Returning to main menu.", gameSelectionInput);
                     }
                 } else {
 
-                    console.println("No account found with name of [ %s ] and password of [ %s ]");
+                    console.println("No account found with name of [ %s ] and password of [ %s ]", accountName, accountPassword);
                 }
             } else if ("create-account".equals(arcadeDashBoardInput)) {
                 console.println("Welcome to the account-creation screen.");
@@ -74,7 +75,7 @@ public class Casino implements Runnable {
         return console.getStringInput(new StringBuilder()
                 .append("Welcome to the Game Selection Dashboard!")
                 .append("\nFrom here, you can select any of the following options:")
-                .append("\n\t[ SLOTS ], [ WordGuess ], [ Craps ]")
+                .append("\n\t[ SLOTS ], [ WordGuess ], [ Craps ], [ Roulette ]")
                 .toString());
     }
 
