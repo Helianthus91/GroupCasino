@@ -1,6 +1,7 @@
 package com.github.zipcodewilmington.casino.games.gamblingGames.slots;
 
 
+import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.games.gamblingGames.GamblingGame;
 import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
@@ -83,6 +84,7 @@ public class SlotsGame extends GamblingGame {
 
 
     public void playerBet(){
+        System.out.println("Your current balance is: " + player.getBalance());
         int temp = console.getIntegerInput("Please enter how much you would like to bet: ");
 
         bet = temp;
@@ -104,6 +106,7 @@ public class SlotsGame extends GamblingGame {
     }
 
     public void updateBalance(){
+        bet = calculateWinnings();
         int newBalance = player.getBalance() + bet;
         player.setBalance(newBalance);
 
@@ -171,6 +174,8 @@ public class SlotsGame extends GamblingGame {
         else {
             playing = false;
         }
+
+        CasinoAccount.setBalance(player.getBalance());
     }
 
 

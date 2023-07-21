@@ -36,7 +36,7 @@ public class CasinoAccount {
         return balance;
     }
 
-    public void setBalance(int balance){
+    public static void setBalance(int balance){
         CasinoAccount.balance = balance;
     }
 

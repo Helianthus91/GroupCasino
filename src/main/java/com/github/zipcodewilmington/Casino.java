@@ -10,6 +10,8 @@ import com.github.zipcodewilmington.casino.games.gamblingGames.BlackJack.BlackJa
 import com.github.zipcodewilmington.casino.games.gamblingGames.BlackJack.BlackJackPlayer;
 import com.github.zipcodewilmington.casino.games.casualGames.wordGuess.WordGuessGame;
 import com.github.zipcodewilmington.casino.games.casualGames.wordGuess.WordGuessPlayer;
+import com.github.zipcodewilmington.casino.games.gamblingGames.Craps.CrapsGame;
+import com.github.zipcodewilmington.casino.games.gamblingGames.Craps.CrapsPlayer;
 import com.github.zipcodewilmington.casino.games.gamblingGames.slots.SlotsGame;
 import com.github.zipcodewilmington.casino.games.gamblingGames.slots.SlotsPlayer;
 import com.github.zipcodewilmington.utils.AnsiColor;
@@ -36,11 +38,12 @@ public class Casino implements Runnable {
                     String gameSelectionInput = getGameSelectionInput().toUpperCase();
                     if ("SLOTS".equals(gameSelectionInput)) {
                         play(new SlotsGame(), new SlotsPlayer());
-                
                     } else if ("BlackJack".equalsIgnoreCase(gameSelectionInput)) {
                         play(new BlackJackGame(), new BlackJackPlayer());
                     } else if ("WordGuess".equalsIgnoreCase(gameSelectionInput)) {
                         play(new WordGuessGame(), new WordGuessPlayer());
+                    } else if ("Craps".equalsIgnoreCase(gameSelectionInput)) {
+                        play(new CrapsGame(), new CrapsPlayer());
                     } else {
 
                         console.println("[ %s ] is an invalid game selection. Returning to main menu.");
@@ -71,7 +74,7 @@ public class Casino implements Runnable {
         return console.getStringInput(new StringBuilder()
                 .append("Welcome to the Game Selection Dashboard!")
                 .append("\nFrom here, you can select any of the following options:")
-                .append("\n\t[ SLOTS ], [ WordGuess ]")
+                .append("\n\t[ SLOTS ], [ WordGuess ], [ Craps ]")
                 .toString());
     }
 
