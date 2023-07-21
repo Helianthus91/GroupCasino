@@ -1,13 +1,15 @@
 package com.github.zipcodewilmington.casino.games.gamblingGames.Craps;
+import com.github.zipcodewilmington.casino.CasinoAccount;
+import com.github.zipcodewilmington.casino.PlayerInterface;
+
 import java.util.Scanner;
 
-public class CrapsPlayer {
+public class CrapsPlayer implements PlayerInterface {
     private String name;
     private int balance;
 
-    public CrapsPlayer(String name, int initialBalance) {
-        this.name = name;
-        this.balance = initialBalance;
+    public CrapsPlayer() {
+
     }
 
     public void playerBet(int amount) {
@@ -27,5 +29,15 @@ public class CrapsPlayer {
 
     public String getName() {
         return name;
+    }
+
+    @Override
+    public CasinoAccount getArcadeAccount() {
+        return null;
+    }
+
+    @Override
+    public <SomeReturnType> SomeReturnType play() {
+        return null;
     }
 }

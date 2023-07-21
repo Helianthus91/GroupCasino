@@ -1,8 +1,10 @@
 package com.github.zipcodewilmington.casino.games.gamblingGames.Craps;
+import com.github.zipcodewilmington.casino.games.gamblingGames.GamblingGame;
+
 import java.util.Random;
 import java.util.Scanner;
 
-public class CrapsGame {
+public class CrapsGame extends GamblingGame {
     private int rollDice() {
         Random random = new Random();
         Scanner scanner = new Scanner(System.in);
@@ -52,7 +54,22 @@ public class CrapsGame {
         // core logic of the game within a single round
     }
 
-        private boolean playAgain () {
+    @Override
+    public void intro() {
+
+    }
+
+    @Override
+    public boolean winCheck() {
+        return false;
+    }
+
+    @Override
+    public void quitAsk() {
+
+    }
+
+    private boolean playAgain () {
             Scanner scanner = new Scanner(System.in);
             System.out.println("Play again? (Y/N)");
             String playAgain = scanner.nextLine();
@@ -63,4 +80,24 @@ public class CrapsGame {
             CrapsGame crapsGame = new CrapsGame();
             crapsGame.run();
         }
+
+    @Override
+    public void playerBet() {
+
     }
+
+    @Override
+    public int calculateWinnings() {
+        return 0;
+    }
+
+    @Override
+    public void updateBalance() {
+
+    }
+
+    @Override
+    public int calculateWinner() {
+        return 0;
+    }
+}

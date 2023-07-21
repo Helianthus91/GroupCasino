@@ -1,7 +1,9 @@
 package com.github.zipcodewilmington.casino.games.gamblingGames.Roulette;
+import com.github.zipcodewilmington.casino.games.gamblingGames.GamblingGame;
+
 import java.util.Scanner;
 import java.util.Random;
-public class RouletteGame {
+public class RouletteGame extends GamblingGame {
     public static void main(String[] args) {
         new RouletteGame().run();
     }
@@ -36,5 +38,40 @@ public class RouletteGame {
         System.out.println("\nTHANK YOU 4 YOUR DONATION!!");
         System.out.println("YOU FINISHED WITH $" + balance);
         scanner.close();
+    }
+
+    @Override
+    public void intro() {
+
+    }
+
+    @Override
+    public boolean winCheck() {
+        return false;
+    }
+
+    @Override
+    public void quitAsk() {
+
+    }
+
+    @Override
+    public void playerBet() {
+
+    }
+
+    @Override
+    public int calculateWinnings() {
+        return 0;
+    }
+
+    @Override
+    public void updateBalance() {
+
+    }
+
+    @Override
+    public int calculateWinner() {
+        return 0;
     }
 }
