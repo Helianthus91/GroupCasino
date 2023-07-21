@@ -43,6 +43,17 @@ class WordGuessGameTest {
 
     @Test
     void getCurrentGuessArray() {
+        //given
+        WordGuessGame wordGuessGame = new WordGuessGame();
+        char[] expected = new char[3];
+
+
+        //when
+        char[] actual = wordGuessGame.getCurrentGuessArray(expected);
+
+        //then
+        Assert.assertArrayEquals(expected, actual);
+
     }
 
     @Test
