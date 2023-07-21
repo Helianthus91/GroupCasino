@@ -65,7 +65,23 @@ public class IOConsole {
         }
     }
 
+    public static Character getCharInput(String prompt) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println(prompt);
+        char c = scanner.nextLine().charAt(0);
+        return c;
+    }
+
     public Integer getIntegerInput(String prompt, Object... args) {
-        return getLongInput(prompt, args).intValue();
+        String stringInput = getStringInput(prompt, args);
+        try {
+            Integer integerInput = Integer.parseInt(stringInput);
+            return integerInput;
+        } catch (NumberFormatException nfe) {
+            println("[ %s ] is an invalid user input!", stringInput);
+            println("Try inputting an integer value!");
+            return getIntegerInput(prompt, args).intValue();
+        }
+
     }
 }
