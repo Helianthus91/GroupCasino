@@ -122,6 +122,7 @@ public class CrapsGame extends GamblingGame {
 
     @Override
     public void updateBalance() {
+        bet = calculateWinnings();
      int newBalance = player.getBalance() + bet;
             player.setBalance(newBalance);}
 

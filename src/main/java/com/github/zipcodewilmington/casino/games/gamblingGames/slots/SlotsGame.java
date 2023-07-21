@@ -42,7 +42,7 @@ public class SlotsGame extends GamblingGame {
         intro();
 
 
-        while (playing == true) {
+        while (playing) {
             // Get player bet
             playerBet();
 
