@@ -8,7 +8,7 @@ public class CrapsGame extends GamblingGame {
     private int rollDice() {
         Random random = new Random();
         Scanner scanner = new Scanner(System.in);
-        System.out.println("Type any key to roll!");
+        System.out.println("Press enter (return) to roll!");
         String roll = scanner.nextLine();
         return random.nextInt(11) + 2;
     }
