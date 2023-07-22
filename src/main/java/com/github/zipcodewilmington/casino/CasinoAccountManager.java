@@ -39,6 +39,7 @@ public class CasinoAccountManager {
 
     public CasinoAccount getAccount(String accountName, String accountPassword) {
         List<CasinoAccount> accounts = readTheAccountsFile();
+
        for(CasinoAccount account : accounts){
            String acctName = account.getName();
            String acctPassword = account.getPassword();
@@ -69,7 +70,7 @@ public class CasinoAccountManager {
 
                     // Make object with the account
                     CasinoAccount account = new CasinoAccount(accountName, accountPassword);
-                    account.setBalance(balance);
+                    CasinoAccount.setBalance(balance);
 
                     accounts.add(account);
                 }

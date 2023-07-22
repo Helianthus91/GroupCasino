@@ -7,6 +7,11 @@ import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
 import com.github.zipcodewilmington.casino.games.gamblingGames.slots.SlotsPlayer;
 
+import java.io.BufferedReader;
+import java.io.FileOutputStream;
+import java.io.FileReader;
+import java.io.IOException;
+import java.util.Arrays;
 import java.util.Random;
 
 /**
@@ -176,6 +181,44 @@ public class SlotsGame extends GamblingGame {
         }
 
         CasinoAccount.setBalance(player.getBalance());
+        replaceSelected(String.valueOf(player.getBalance()));
+
+    }
+    public static void replaceSelected(String replaceWith) {
+        try {
+            // input the file content to the StringBuffer "input"
+            BufferedReader file = new BufferedReader(new FileReader("accounts.txt"));
+            StringBuilder inputBuffer = new StringBuilder();
+            String line;
+
+            while ((line = file.readLine()) != null) {
+                inputBuffer.append(line);
+                inputBuffer.append('\n');
+            }
+            file.close();
+
+            String inputStr = inputBuffer.toString();
+
+            System.out.println(inputStr); // display the original file for debugging
+
+           String[] changedStringArray = inputStr.split(",");
+           changedStringArray[2] = replaceWith;
+           String changedString = Arrays.toString(changedStringArray);
+
+            // display the new file for debugging
+            System.out.println("----------------------------------\n" + inputStr);
+
+            // write the new string with the replaced line OVER the same file
+            FileOutputStream fileOut = new FileOutputStream("accounts.txt");
+            fileOut.write(changedString.getBytes());
+            fileOut.close();
+
+        } catch (Exception e) {
+            System.out.println("Problem reading file.");
+        }
+
+
+
     }
 
 
