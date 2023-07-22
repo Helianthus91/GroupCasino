@@ -1,2 +1,1 @@
-[a, a, 90, demo, 100
-]
+demo,demo,85

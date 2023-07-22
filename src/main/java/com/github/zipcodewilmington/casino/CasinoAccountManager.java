@@ -50,7 +50,7 @@ public class CasinoAccountManager {
                return account;
            }
        }
-       console.println("Account not found :l");
+       console.println("Account not found." + "\n" + "Check entered info or create a new account");
        return null;
     }
 
