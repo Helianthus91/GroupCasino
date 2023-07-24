@@ -190,7 +190,7 @@ public class SlotsGame extends GamblingGame {
 
 
     public void quitAsk(){
-        if (winCheck()){
+        if (wonGame){
             System.out.println("You have won $" + bet + "!");
         }
         else {
