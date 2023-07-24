@@ -6,4 +6,6 @@ public abstract class GamblingGame extends Game implements GamblingGameInterface
     public abstract int calculateWinnings();
 
     public abstract int calculateWinner();
+
+
 }
