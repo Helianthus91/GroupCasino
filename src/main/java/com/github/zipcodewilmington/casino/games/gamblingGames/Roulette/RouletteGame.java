@@ -56,8 +56,9 @@ public class RouletteGame extends GamblingGame {
     }
 
     @Override
-    public void playerBet() {
+    public int playerBet() {
 
+        return 0;
     }
 
     @Override
