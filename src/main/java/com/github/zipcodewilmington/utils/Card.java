@@ -30,6 +30,13 @@ public class Card {
         {
             this.cardValue = cardValue;
         }
+
+    @Override
+    public String toString() {
+        return "Card { " + cardValue + " of " + suit + " }";
     }
+}
+
+
 
 

@@ -24,10 +24,18 @@ public class Deck
 
         Collections.shuffle(deck);
 
-        for (Object o : deck) {
-            Card aCard = (Card) o;
-            System.out.println(aCard.getCardValue() + " of " + aCard.getSuit());
-        }
+
+        //Method for printing the contents of shuffled deck for debugging
+//        for (Object o : deck) {
+//            Card aCard = (Card) o;
+//            System.out.println(aCard.getCardValue() + " of " + aCard.getSuit());
+//        }
+    }
+
+    public Card drawCard(){
+        Card topCard = (Card) deck.get(0);
+        deck.remove(deck.get(0));
+        return topCard;
     }
 
 
