@@ -5,30 +5,21 @@ import com.github.zipcodewilmington.casino.PlayerInterface;
 import java.util.Scanner;
 
 public class CrapsPlayer implements PlayerInterface {
-    private String name;
     private int balance;
+    private CasinoAccount arcadeAccount;
 
     public CrapsPlayer() {
+        this.balance = CasinoAccount.getBalance();
 
     }
 
-    public void playerBet(int amount) {
-        balance -= amount;
+
+    public void setBalance(int balance){
+        this.balance = balance;
     }
 
-    public void winBet() {
-        balance += 2 * 25;
-    }
-    // if the bet is $50, the player doubles their bet
-    public void loseBet() {
-    }
-    // bet deducted
-    public int getBalance() {
+    public int getBalance(){
         return balance;
-    }
-
-    public String getName() {
-        return name;
     }
 
     @Override

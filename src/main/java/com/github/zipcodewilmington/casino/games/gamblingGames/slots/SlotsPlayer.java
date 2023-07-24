@@ -9,6 +9,8 @@ import com.github.zipcodewilmington.casino.PlayerInterface;
 public class SlotsPlayer implements PlayerInterface {
 
 
+    private final String accountName;
+    private final String accountPassword;
     private int balance = 0;
 
     private CasinoAccount arcadeAccount;
@@ -16,6 +18,8 @@ public class SlotsPlayer implements PlayerInterface {
 
     public SlotsPlayer(){
         this.balance = CasinoAccount.getBalance();
+        this.accountName = CasinoAccount.getName();
+        this.accountPassword = CasinoAccount.getPassword();
 
     }
 
