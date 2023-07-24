@@ -1,5 +1,6 @@
 package com.github.zipcodewilmington.casino.games.gamblingGames.BlackJack;
 
+import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.games.gamblingGames.GamblingGame;
 import com.github.zipcodewilmington.casino.games.gamblingGames.slots.SlotsPlayer;
 import com.github.zipcodewilmington.utils.Deck;
@@ -13,6 +14,8 @@ public class BlackJackGame extends GamblingGame {
     private List<Deck> deckOfCards;
     private int bet;
     private int winnings;
+    private String winner;
+    private boolean playing = true;
 
     private int playerChoice;
 
@@ -23,6 +26,7 @@ public class BlackJackGame extends GamblingGame {
     public void run() {
         //Welcome to blackjack
         intro();
+        while(playing){
         add();
         addDealer();
         Deck deckOfCards = new Deck();
@@ -31,28 +35,48 @@ public class BlackJackGame extends GamblingGame {
 
         //Dealer player and dealer hands
         player.setStartingHand(deckOfCards);
-        System.out.println(player.getHand().toString());
+        System.out.println("player hand" + player.getHand().toString());
         System.out.println(player.calculateHand()); //Change to dealing hand
+
         dealer.setStartingHand(deckOfCards);
+        System.out.println("Dealer hand" + dealer.getHand().toString());
 
         //Ask player options (hit, stay) if not 21.
 
+        boolean playerTurn = true;
 
         //hit give player a card
-        while (player.calculateHand() < 21){
-        playerChoice = playerBetOption();
-        switch(playerChoice) {
+        while (player.calculateHand() < 21 && playerTurn) {
 
-            case 1:
+            playerChoice = playerBetOption();
+            if (playerChoice == 1) {
                 player.hit(deckOfCards.drawCard());
                 System.out.println(player.getHand().toString());
                 System.out.println(player.calculateHand());
-
-            case 2:
+            } else if (playerChoice == 2) {
+                playerTurn = false;
                 break;
-        }}
+            } else {
+                System.out.println("Invalid entry");
+            }
+        }
         checkBust();
-        busted();
+
+        while (dealer.calculateHand() < 17) {
+            dealer.hit(deckOfCards.drawCard());
+            System.out.println(dealer.getHand().toString());
+            System.out.println(dealer.calculateHand());
+            checkDealerBust();
+        }
+
+        winner = checkWinner();
+//        bet = calculateWinnings();
+        updateBalance();
+        quitAsk();
+    }
+    }
+//        if (dealer.calculateHand() > 17 && p)
+
         //check total in between. If player goes over 21, bust and lose.
         //stay switch to dealer who will go automatically
         //Dealer plays until 17.
@@ -63,9 +87,19 @@ public class BlackJackGame extends GamblingGame {
 
 
 
+        public String checkWinner(){
+            if (player.calculateHand() == 21 || player.calculateHand() > dealer.calculateHand() || dealer.calculateHand() > 21){
+                return "player";
+            } else if (dealer.calculateHand() == 21 || dealer.calculateHand() > player.calculateHand() || player.calculateHand() > 21){
+                return "dealer";
+            }
+            return "push";
+        }
 
 
-    }
+
+
+
 
     @Override
     public void intro() {
@@ -88,19 +122,27 @@ public class BlackJackGame extends GamblingGame {
         return false;
     }
 
-    @Override
-    public void quitAsk() {
 
-    }
     public void checkBust(){
         if (player.calculateHand() > 21){
-            System.out.println("Busted");
+            System.out.println("Player Busted");
             busted();
-        }
+        } }
+
+        public void checkDealerBust(){
+            if (dealer.calculateHand() > 21){
+                System.out.println("Player Busted");
+                dealerBusted();
+            }
     }
     public void busted(){
         System.out.println("You have gone over 21 and Busted. \n " +
                 "You lose.");
+    }
+    public void dealerBusted(){
+        System.out.println("Dealer has gone over 21 and Busted. \n " +
+                "You win!" +
+                ".");
     }
 
     @Override
@@ -110,6 +152,31 @@ public class BlackJackGame extends GamblingGame {
 
         bet = temp;
     }
+    @Override
+    public void quitAsk(){
+        if (winner.equals("player")){
+            System.out.println("You have won $" + bet + "!");
+        }
+        else {
+            System.out.println("Sorry, no win this time.");
+        }
+
+        String userAnswer = console.getStringInput("Would you like us to deal again? Press 'y' to play again. Press 'n' to quit the game.");
+
+        if (userAnswer.equals("y")){
+            playing = true;
+        }
+        else {
+            playing = false;
+        }
+
+        CasinoAccount.setBalance(player.getBalance());
+        String accountName = player.getArcadeAccount().getName();
+        String accountPassword = player.getArcadeAccount().getPassword();
+        Integer accountBalance = player.getBalance();
+        updateSelectedAccount(accountName, accountPassword, accountBalance);
+
+    }
 
     public Integer playerBetOption(){
         return console.getIntegerInput("What would you like to do? \n 1: Hit \n 2: Stay");
@@ -117,7 +184,12 @@ public class BlackJackGame extends GamblingGame {
 
     @Override
     public int calculateWinnings() {
-        return 0;
+        if (winner.equals("player")){
+            return (bet * 2);
+        }
+        else {
+            return (bet * -1);
+        }
     }
 
     @Override
@@ -127,7 +199,9 @@ public class BlackJackGame extends GamblingGame {
 
     @Override
     public void updateBalance() {
+        bet = calculateWinnings();
+        int newBalance = player.getBalance() + bet;
+        player.setBalance(newBalance);
 
     }
-
 }
