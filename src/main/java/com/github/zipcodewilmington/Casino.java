@@ -46,7 +46,9 @@ public class Casino implements Runnable {
                         play(new RouletteGame(), new RoulettePlayer());
                     }else if ("Craps".equalsIgnoreCase(gameSelectionInput)) {
                         play(new CrapsGame(), new CrapsPlayer());
-                    }else {
+                    }else if ("BlackJack".equalsIgnoreCase(gameSelectionInput)) {
+                        play(new BlackJackGame(), new BlackJackPlayer());
+                    } else {
                         console.println("[ %s ] is an invalid game selection. Returning to main menu.", gameSelectionInput);
                     }
                 } else {
@@ -75,7 +77,7 @@ public class Casino implements Runnable {
         return console.getStringInput(new StringBuilder()
                 .append("Welcome to the Game Selection Dashboard!")
                 .append("\nFrom here, you can select any of the following options:")
-                .append("\n\t[ SLOTS ], [ WordGuess ], [ Craps ], [ Roulette ]")
+                .append("\n\t[ SLOTS ], [ WordGuess ], [ Craps ], [ Roulette ], [ BlackJack ]")
                 .toString());
     }
 

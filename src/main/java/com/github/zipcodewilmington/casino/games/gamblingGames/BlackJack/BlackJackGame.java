@@ -62,7 +62,7 @@ public class BlackJackGame extends GamblingGame {
         }
         checkBust();
 
-        while (dealer.calculateHand() < 17) {
+        while (dealer.calculateHand() < 17 && player.calculateHand() < 21) {
             dealer.hit(deckOfCards.drawCard());
             System.out.println(dealer.getHand().toString());
             System.out.println(dealer.calculateHand());
