@@ -15,17 +15,12 @@ import java.util.Random;
 public class SlotsGame extends GamblingGame {
 
     public SlotsPlayer player;
-
     private int bet;
-
-    private String[] slotOptions = new String[]{"*", "~", "@", "#", "o", "+"};
-
+    private String[] slotOptions = new String[]{"*", "~", "#", "o", "+"};
     private String[] slotResult = new String[3];
-
     private IOConsole console = new IOConsole();
-
     private IOConsole colorConsole = new IOConsole(AnsiColor.RED);
-
+    private boolean wonGame;
     private boolean playing = true;
 
 
@@ -37,27 +32,33 @@ public class SlotsGame extends GamblingGame {
         this.player = null;
     }
 
+    public SlotsPlayer getPlayer(){
+        return player;
+    }
+
     public void run(){
         add();
         intro();
 
 
         while (playing == true) {
+            System.out.println("Your current balance is: " + player.getBalance());
             // Get player bet
             playerBet();
 
             // Spin slots
             startSlots();
-            slotResult();
+            slotResult = slotResult();
             try {
                 printSlotResult();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+            wonGame = winCheck(slotResult);
             // Update bet based on result of spin
-            calculateWinnings();
+            bet = calculateWinnings(bet, wonGame);
             // Update player balance with new bet
-            // updateBalance();
+
             updateBalance();
             quitAsk();
         }
@@ -72,33 +73,52 @@ public class SlotsGame extends GamblingGame {
 
     }
 
+    public int getBet(){
+        return bet;
+    }
+
     @Override
-    public boolean winCheck() {
-        if (slotResult[0].equals(slotResult[1]) && slotResult[1].equals(slotResult[2])){
-            return true;
-        }
-        else {
+    public boolean winCheck(){
+        return true;
+    }
+
+
+
+
+    public boolean winCheck(String[] slotResult) {
+        if (slotResult.length != 3) {
             return false;
         }
-    }
+        return (slotResult[0].equals(slotResult[1]) && slotResult[1].equals(slotResult[2]));
 
-
-    public void playerBet(){
-        System.out.println("Your current balance is: " + player.getBalance());
-        int temp = console.getIntegerInput("Please enter how much you would like to bet: ");
-
-        bet = temp;
     }
 
     @Override
-    public int calculateWinnings() {
-        if (winCheck() == true){
+    public int playerBet(){
+
+        int temp = console.getIntegerInput("Please enter how much you would like to bet: ");
+
+        return temp;
+    }
+
+
+
+
+    @Override
+    public int calculateWinnings(){
+        return 0;
+    }
+
+    public int calculateWinnings(int bet, boolean wonGame) {
+        if (wonGame == true){
             return (bet * 10);
         }
         else {
             return (bet * -1);
         }
     }
+
+
 
     @Override
     public int calculateWinner() {
@@ -109,7 +129,6 @@ public class SlotsGame extends GamblingGame {
         bet = calculateWinnings();
         int newBalance = player.getBalance() + bet;
         player.setBalance(newBalance);
-
     }
 
     public void startSlots(){
@@ -125,10 +144,12 @@ public class SlotsGame extends GamblingGame {
         return slot;
     }
 
-    public void slotResult(){
+    public String[] slotResult(){
+        String[] result = new String[3];
         for (int i = 0; i < 3; i++){
-            slotResult[i] = slotTurn();
+            result[i] = slotTurn();
         }
+        return result;
     }
 
     public void printSlotResult() throws InterruptedException {
