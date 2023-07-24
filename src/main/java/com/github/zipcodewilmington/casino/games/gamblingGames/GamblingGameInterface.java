@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface GamblingGameInterface {
 
-    void playerBet();
+    int playerBet();
 
     int calculateWinnings();
 
