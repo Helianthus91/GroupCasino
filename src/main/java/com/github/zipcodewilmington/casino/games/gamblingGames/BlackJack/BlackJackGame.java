@@ -148,7 +148,6 @@ public class BlackJackGame extends GamblingGame {
         System.out.println("Your current balance is: " + player.getBalance());
         int temp = console.getIntegerInput("Please enter how much you would like to bet: ");
 
-        bet = temp;
         return temp;
     }
     @Override

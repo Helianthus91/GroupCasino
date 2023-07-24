@@ -53,7 +53,7 @@ public class SlotsGame extends GamblingGame {
             System.out.println("Your current balance is: " + player.getBalance());
 
             // Get player bet
-            playerBet();
+            bet = playerBet();
 
             // Spin slots
             startSlots();
@@ -135,7 +135,6 @@ public class SlotsGame extends GamblingGame {
     }
 
     public void updateBalance(){
-        bet = calculateWinnings();
         int newBalance = player.getBalance() + bet;
         player.setBalance(newBalance);
     }
