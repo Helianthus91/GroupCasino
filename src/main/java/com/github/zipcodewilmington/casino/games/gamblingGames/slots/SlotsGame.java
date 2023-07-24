@@ -119,7 +119,7 @@ public class SlotsGame extends GamblingGame {
     }
 
     public int calculateWinnings(int bet, boolean wonGame) {
-        if (wonGame == true){
+        if (wonGame){
             return (bet * 10);
         }
         else {
@@ -135,8 +135,10 @@ public class SlotsGame extends GamblingGame {
     }
 
     public void updateBalance(){
+
         int newBalance = player.getBalance() + bet;
         player.setBalance(newBalance);
+
     }
 
     public void startSlots(){
@@ -188,7 +190,7 @@ public class SlotsGame extends GamblingGame {
 
 
     public void quitAsk(){
-        if (winCheck() == true){
+        if (winCheck()){
             System.out.println("You have won $" + bet + "!");
         }
         else {
