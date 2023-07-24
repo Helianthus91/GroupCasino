@@ -7,6 +7,10 @@ import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
 import com.github.zipcodewilmington.casino.games.gamblingGames.slots.SlotsPlayer;
 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -31,6 +35,7 @@ public class SlotsGame extends GamblingGame {
 
     public void add(){
         this.player = new SlotsPlayer();
+
     }
 
     public void remove(SlotsPlayer player){
@@ -176,16 +181,13 @@ public class SlotsGame extends GamblingGame {
         }
 
         CasinoAccount.setBalance(player.getBalance());
+        String accountName = player.getArcadeAccount().getName();
+        String accountPassword = player.getArcadeAccount().getPassword();
+        Integer accountBalance = player.getBalance();
+        updateSelectedAccount(accountName, accountPassword, accountBalance);
+
     }
 
 
+    }
 
-
-
-
-
-
-
-
-
-}
