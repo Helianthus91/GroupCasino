@@ -86,12 +86,15 @@ public class BlackJackGame extends GamblingGame {
 
 
         public String checkWinner(){
-            if (player.calculateHand() == 21 || (player.calculateHand() > dealer.calculateHand() && dealer.calculateHand() > 21)){
-                return "player";
-            } else if (dealer.calculateHand() == 21 ||( dealer.calculateHand() > player.calculateHand() && player.calculateHand() > 21)){
-                return "dealer";
+        String winner = "dealer";
+            if (player.calculateHand() < 22 && player.calculateHand() > dealer.calculateHand() ){
+                winner = "player";
             }
-            return "push";
+            if (dealer.calculateHand() > 21){
+                winner = "player";
+            }
+
+            return winner;
         }
 
 
