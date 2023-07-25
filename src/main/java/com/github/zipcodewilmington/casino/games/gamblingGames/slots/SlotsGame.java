@@ -7,6 +7,10 @@ import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
 import com.github.zipcodewilmington.casino.games.gamblingGames.slots.SlotsPlayer;
 
+import java.io.*;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Random;
 
 /**
@@ -15,49 +19,53 @@ import java.util.Random;
 public class SlotsGame extends GamblingGame {
 
     public SlotsPlayer player;
-
     private int bet;
 
     private String[] slotOptions = new String[]{"***", "~~~", "###", "ooo", "+++"};
 
     private String[] slotResult = new String[3];
-
     private IOConsole console = new IOConsole();
-
     private IOConsole colorConsole = new IOConsole(AnsiColor.RED);
-
+    private boolean wonGame;
     private boolean playing = true;
 
 
     public void add(){
         this.player = new SlotsPlayer();
+
     }
 
     public void remove(SlotsPlayer player){
         this.player = null;
     }
 
+    public SlotsPlayer getPlayer(){
+        return player;
+    }
+
     public void run(){
         add();
         intro();
 
+        while (playing == true) {
+            System.out.println("Your current balance is: " + player.getBalance());
 
-        while (playing) {
             // Get player bet
-            playerBet();
+            bet = playerBet();
 
             // Spin slots
             startSlots();
-            slotResult();
+            slotResult = slotResult();
             try {
                 printSlotResult();
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
+            wonGame = winCheck(slotResult);
             // Update bet based on result of spin
-            calculateWinnings();
+            bet = calculateWinnings(bet, wonGame);
             // Update player balance with new bet
-            // updateBalance();
+
             updateBalance();
             quitAsk();
         }
@@ -72,27 +80,44 @@ public class SlotsGame extends GamblingGame {
 
     }
 
+    public int getBet(){
+        return bet;
+    }
+
     @Override
-    public boolean winCheck() {
-        if (slotResult[0].equals(slotResult[1]) && slotResult[1].equals(slotResult[2])){
-            return true;
-        }
-        else {
-            return false;
-        }
+    public boolean winCheck(){
+        return true;
     }
 
 
-    public void playerBet(){
+
+
+    public boolean winCheck(String[] slotResult) {
+        if (slotResult.length != 3) {
+            return false;
+        }
+        return (slotResult[0].equals(slotResult[1]) && slotResult[1].equals(slotResult[2]));
+
+    }
+
+    @Override
+    public int playerBet(){
         System.out.println("Your current balance is: " + player.getBalance());
         int temp = console.getIntegerInput("Please enter how much you would like to bet: ");
 
-        bet = temp;
+        return temp;
     }
 
+
     @Override
-    public int calculateWinnings() {
-        if (winCheck() == true){
+    public int calculateWinnings(){
+        return 0;
+    }
+
+
+    public int calculateWinnings(int bet, boolean wonGame) {
+
+        if (wonGame){
             return (bet * 10);
         }
         else {
@@ -100,17 +125,13 @@ public class SlotsGame extends GamblingGame {
         }
     }
 
+
+
     @Override
     public int calculateWinner() {
         return 0;
     }
 
-    public void updateBalance(){
-        bet = calculateWinnings();
-        int newBalance = player.getBalance() + bet;
-        player.setBalance(newBalance);
-
-    }
 
     public void startSlots(){
         console.getStringInput("Press the return key to spin the slots and (possibly) win some money!");
@@ -125,10 +146,12 @@ public class SlotsGame extends GamblingGame {
         return slot;
     }
 
-    public void slotResult(){
+    public String[] slotResult(){
+        String[] result = new String[3];
         for (int i = 0; i < 3; i++){
-            slotResult[i] = slotTurn();
+            result[i] = slotTurn();
         }
+        return result;
     }
 
     public void printSlotResult() throws InterruptedException {
@@ -156,10 +179,14 @@ public class SlotsGame extends GamblingGame {
     }
 
 
-
+    public void updateBalance(){
+        bet = calculateWinnings(bet, winCheck());
+        int newBalance = player.getBalance() + bet;
+        player.setBalance(newBalance);
+    }
 
     public void quitAsk(){
-        if (winCheck() == true){
+        if (wonGame){
             System.out.println("You have won $" + bet + "!");
         }
         else {
@@ -176,16 +203,12 @@ public class SlotsGame extends GamblingGame {
         }
 
         CasinoAccount.setBalance(player.getBalance());
+        String accountName = player.getArcadeAccount().getName();
+        String accountPassword = player.getArcadeAccount().getPassword();
+        Integer accountBalance = player.getBalance();
+        updateSelectedAccount(accountName, accountPassword, accountBalance);
+
     }
 
-
-
-
-
-
-
-
-
-
-
 }
+

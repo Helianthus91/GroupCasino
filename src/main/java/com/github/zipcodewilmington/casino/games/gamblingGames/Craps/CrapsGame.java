@@ -1,4 +1,5 @@
 package com.github.zipcodewilmington.casino.games.gamblingGames.Craps;
+import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.games.gamblingGames.GamblingGame;
 
 import java.util.Random;
@@ -9,12 +10,19 @@ public class CrapsGame extends GamblingGame {
     private CrapsPlayer player;
     private int bet;
 
+
+
+    private boolean wonGame;
+
+    private boolean playing = true;
+
     public void run() {
 
        do {
            boolean reroll = true;
+           add();
            gameIntro();
-           playerBet();
+           bet = playerBet();
 
            int firstRoll = rollDice();
            int sum = firstRoll;
@@ -22,14 +30,16 @@ public class CrapsGame extends GamblingGame {
 
            if (sum == 7 || sum == 11) {
                System.out.println("Congratulations, you win!");
-               winCheck();
-               calculateWinnings();
+               wonGame = winCheck();
+               bet = calculateWinnings(bet, wonGame);
                updateBalance();
+               CasinoAccount.setBalance(player.getBalance());
            } else if (sum == 2 || sum == 3 || sum == 12) {
                System.out.println("Oh no, you lose!");
-               loseCheck();
-               calculateWinnings();
+               wonGame = loseCheck();
+               bet = calculateWinnings(bet, wonGame);
                updateBalance();
+               CasinoAccount.setBalance(player.getBalance());
            } else {
                System.out.println("The point is " + sum);
                while (reroll) {
@@ -37,23 +47,25 @@ public class CrapsGame extends GamblingGame {
                    System.out.println("You rolled a " + nextRoll);
                    if (nextRoll == sum) {
                        System.out.println("Congratulations, you win!");
-                       winCheck();
-                       calculateWinnings();
+                       wonGame = winCheck();
+                       bet = calculateWinnings(bet, wonGame);
                        updateBalance();
+                       CasinoAccount.setBalance(player.getBalance());
                        reroll = false;
-//                       playAgain();
+//
                    } else if (nextRoll == 7) {
                        System.out.println("Oh no, you lose!");
-                        loseCheck();
-                        calculateWinnings();
+                        wonGame = loseCheck();
+                        bet = calculateWinnings(bet, wonGame);
                         updateBalance();
+                       CasinoAccount.setBalance(player.getBalance());
                        reroll = false;
-//                       playAgain();
-
+//
                    }
                }
            }
-       } while (playAgain());
+           playing = playAgain();
+       } while (playing);
         // core logic of the game within a single round
     }
 
@@ -67,12 +79,16 @@ public class CrapsGame extends GamblingGame {
 
     public void gameIntro() {
         add();
+
         System.out.println("Welcome to Craps Casino Game!");
+
+
+
     }
 
     @Override
     public void intro() {
-
+        System.out.println("Welcome to Craps Casino Game!");
     }
 
     @Override
@@ -102,29 +118,37 @@ public class CrapsGame extends GamblingGame {
         }
 
     @Override
-    public void playerBet(){
+    public int playerBet(){
         System.out.println("Your current balance is: " + player.getBalance());
         bet = console.getIntegerInput("Please enter how much you would like to bet: ");
+        return bet;
     }
-
-   public int calculateWinnings() {
-        if (winCheck()){
-            return (bet * 10);
-        } else {
-            return bet * -1;
-        }
-   }
 
     @Override
     public void updateBalance() {
-        bet = calculateWinnings();
-     int newBalance = player.getBalance() + bet;
-            player.setBalance(newBalance);}
+        int newBalance = player.getBalance() + bet;
+        player.setBalance(newBalance);}
+
+    @Override
+    public int calculateWinnings(){
+        return 0;
+    }
+
+    public int calculateWinnings(Integer bet, Boolean wonGame) {
+        if (wonGame){
+            return (bet * 2);
+        } else {
+            return bet * -1;
+        }
+    }
 
     @Override
     public int calculateWinner() {
         return 0;
     }
+
+    //Player
+
     public void add(){
         this.player = new CrapsPlayer();
     }
@@ -134,7 +158,11 @@ public class CrapsGame extends GamblingGame {
     }
 
 
+
     public CrapsGame getPlayer() {
-        return getPlayer();
+        return player;
     }
+
+
+
 }
