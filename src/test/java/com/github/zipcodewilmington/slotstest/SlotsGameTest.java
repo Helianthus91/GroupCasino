@@ -159,6 +159,41 @@ public class SlotsGameTest {
 
     }
 
+    @Test
+    public void slotResultTest1(){
+        // Given
+        SlotsGame game = new SlotsGame();
+        int expected = 3;
+
+        // When
+        String[] slotResult = game.slotResult();
+        int actual = slotResult.length;
+
+        // Then
+        Assert.assertEquals(expected,actual);
+    }
+
+    @Test
+    public void slotResultTestFalse(){
+        // Given
+        SlotsGame game = new SlotsGame();
+        int expected = 4;
+        boolean lengthEquals;
+
+        // When
+        String[] slotResult = game.slotResult();
+        int actual = slotResult.length;
+
+        if (expected == actual){
+            lengthEquals = true;
+        }
+        else {
+            lengthEquals = false;
+        }
+
+        // Then
+        Assert.assertFalse(lengthEquals);
+    }
 
     @Test
     public void updateBalanceTest(){
