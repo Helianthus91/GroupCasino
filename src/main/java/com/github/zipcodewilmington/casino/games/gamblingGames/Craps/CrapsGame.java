@@ -1,4 +1,5 @@
 package com.github.zipcodewilmington.casino.games.gamblingGames.Craps;
+import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.games.gamblingGames.GamblingGame;
 
 import java.util.Random;
@@ -11,11 +12,14 @@ public class CrapsGame extends GamblingGame {
 
     private boolean wonGame;
 
+    private boolean playing = true;
+
     // startGame = entry point to casino game that starts game loop and repeatedly calls playRound method.
     public void run() {
 
        do {
            boolean reroll = true;
+           add();
            gameIntro();
            bet = playerBet();
 
@@ -25,14 +29,16 @@ public class CrapsGame extends GamblingGame {
 
            if (sum == 7 || sum == 11) {
                System.out.println("Congratulations, you win!");
-               winCheck();
-               calculateWinnings();
+               wonGame = winCheck();
+               bet = calculateWinnings(bet, wonGame);
                updateBalance();
+               CasinoAccount.setBalance(player.getBalance());
            } else if (sum == 2 || sum == 3 || sum == 12) {
                System.out.println("Oh no, you lose!");
-               loseCheck();
-               calculateWinnings();
+               wonGame = loseCheck();
+               bet = calculateWinnings(bet, wonGame);
                updateBalance();
+               CasinoAccount.setBalance(player.getBalance());
            } else {
                System.out.println("The point is " + sum);
                while (reroll) {
@@ -40,23 +46,25 @@ public class CrapsGame extends GamblingGame {
                    System.out.println("You rolled a " + nextRoll);
                    if (nextRoll == sum) {
                        System.out.println("Congratulations, you win!");
-                       winCheck();
-                       calculateWinnings();
+                       wonGame = winCheck();
+                       bet = calculateWinnings(bet, wonGame);
                        updateBalance();
+                       CasinoAccount.setBalance(player.getBalance());
                        reroll = false;
-//                       playAgain();
+//
                    } else if (nextRoll == 7) {
                        System.out.println("Oh no, you lose!");
-                        loseCheck();
-                        calculateWinnings();
+                        wonGame = loseCheck();
+                        bet = calculateWinnings(bet, wonGame);
                         updateBalance();
+                       CasinoAccount.setBalance(player.getBalance());
                        reroll = false;
-//                       playAgain();
-
+//
                    }
                }
            }
-       } while (playAgain());
+           playing = playAgain();
+       } while (playing);
         // core logic of the game within a single round
     }
 
@@ -116,7 +124,6 @@ public class CrapsGame extends GamblingGame {
 
     @Override
     public void updateBalance() {
-        bet = calculateWinnings();
         int newBalance = player.getBalance() + bet;
         player.setBalance(newBalance);}
 
