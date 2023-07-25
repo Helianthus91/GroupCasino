@@ -5,6 +5,7 @@ import com.github.zipcodewilmington.casino.games.gamblingGames.GamblingGame;
 import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
 
+import java.util.Objects;
 import java.util.Random;
 
 public class RockPaperScissorsGame extends GamblingGame {
@@ -136,10 +137,10 @@ public class RockPaperScissorsGame extends GamblingGame {
     }
 
     public String getWinningMove(String handSign) {
-        if (handSign == ROCK){
+        if (Objects.equals(handSign, ROCK)){
             return PAPER;
         }
-        else if (handSign == PAPER){
+        else if (Objects.equals(handSign, PAPER)){
             return SCISSOR;
         }
         else return ROCK;
@@ -153,7 +154,7 @@ public class RockPaperScissorsGame extends GamblingGame {
     }
 
     public RockPaperScissorsPlayer getWinner(String handSignOfPlayer, String handSignOfDealer) {
-        if (getWinningMove(handSignOfPlayer) == handSignOfDealer){
+        if (getWinningMove(handSignOfPlayer).equals(handSignOfDealer)){
             return dealer;
         }
         else{
