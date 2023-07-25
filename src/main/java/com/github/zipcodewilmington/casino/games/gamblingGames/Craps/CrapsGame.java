@@ -9,6 +9,8 @@ public class CrapsGame extends GamblingGame {
     private CrapsPlayer player;
     private int bet;
 
+    private boolean wonGame;
+
     // startGame = entry point to casino game that starts game loop and repeatedly calls playRound method.
     public void run() {
 
