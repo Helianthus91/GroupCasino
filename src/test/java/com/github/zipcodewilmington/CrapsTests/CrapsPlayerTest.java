@@ -1,34 +1,45 @@
-package com.github.zipcodewilmington.CrapsTests;
+package com.github.zipcodewilmington.crapstests;
+
 import com.github.zipcodewilmington.casino.games.gamblingGames.Craps.CrapsPlayer;
+import com.github.zipcodewilmington.casino.games.gamblingGames.slots.SlotsPlayer;
+import org.junit.Assert;
 import org.junit.jupiter.api.Test;
 import static org.junit.Assert.assertEquals;
 
 public class CrapsPlayerTest {
-    private CrapsPlayer player;
 
-//    @Test
-//    public void testPlaceBet() {
-//        player.playerBet(100);
-//        assertEquals(900, player.getBalance());
-//    }
-//
-//    @Test
-//    public void testWinBet() {
-//        player.winBet();
-//        assertEquals(1050, player.getBalance());
-//    }
-//
-//    @Test
-//    public void testLoseBet() {
-//        player.loseBet();
-//        assertEquals(975, player.getBalance());
-//    }
 
     @Test
-    public void testGetBalance() {
-        int balance = player.getBalance();
-        assertEquals(1000, balance);
+    public void setBalanceTest(){
+        // Given
+        int expected = 1000;
+
+        // When
+        CrapsPlayer player = new CrapsPlayer();
+        player.setBalance(1000);
+
+        int actual = player.getBalance();
+
+        // Then
+        Assert.assertEquals(expected, actual);
     }
+
+    @Test
+    public void getBalanceTest(){
+        // Given
+        int expected = 1000;
+
+        // When
+        CrapsPlayer player = new CrapsPlayer();
+        player.setBalance(1000);
+
+        int actual = player.getBalance();
+
+        // Then
+        Assert.assertEquals(expected, actual);
+    }
+
+
 }
 
 

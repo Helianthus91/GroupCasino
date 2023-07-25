@@ -68,7 +68,7 @@ public class CrapsGame extends GamblingGame {
 
     public void gameIntro() {
         add();
-        System.out.println("Welcome to Craps Casino Game!");
+
 
 
 
@@ -76,7 +76,7 @@ public class CrapsGame extends GamblingGame {
 
     @Override
     public void intro() {
-
+        System.out.println("Welcome to Craps Casino Game!");
     }
 
     @Override
@@ -112,19 +112,24 @@ public class CrapsGame extends GamblingGame {
         return bet;
     }
 
-   public int calculateWinnings() {
-        if (winCheck()){
-            return (bet * 10);
-        } else {
-            return bet * -1;
-        }
-   }
-
     @Override
     public void updateBalance() {
         bet = calculateWinnings();
      int newBalance = player.getBalance() + bet;
             player.setBalance(newBalance);}
+
+    @Override
+    public int calculateWinnings(){
+        return 0;
+    }
+
+    public int calculateWinnings(Integer bet, Boolean wonGame) {
+        if (wonGame){
+            return (bet * 2);
+        } else {
+            return bet * -1;
+        }
+    }
 
     @Override
     public int calculateWinner() {

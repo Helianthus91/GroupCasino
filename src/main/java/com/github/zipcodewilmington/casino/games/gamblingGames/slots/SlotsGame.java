@@ -47,8 +47,6 @@ public class SlotsGame extends GamblingGame {
         add();
         intro();
 
-
-
         while (playing == true) {
             System.out.println("Your current balance is: " + player.getBalance());
 
@@ -111,9 +109,12 @@ public class SlotsGame extends GamblingGame {
     }
 
 
-
-
     @Override
+    public int calculateWinnings(){
+        return 0;
+    }
+
+
     public int calculateWinnings(int bet, boolean wonGame) {
 
         if (wonGame){
@@ -129,14 +130,6 @@ public class SlotsGame extends GamblingGame {
     @Override
     public int calculateWinner() {
         return 0;
-    }
-
-
-    public void updateBalance(){
-
-        int newBalance = player.getBalance() + bet;
-        player.setBalance(newBalance);
-
     }
 
 

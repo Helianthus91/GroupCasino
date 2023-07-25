@@ -39,7 +39,7 @@ public class SlotsGameTest {
     public void slotTurnTest1(){
         // Given
         SlotsGame game = new SlotsGame();
-        String[] slotOptions = new String[]{"*", "~", "#", "o", "+"};
+        String[] slotOptions = new String[]{"***", "~~~", "###", "ooo", "+++"};
 
         // When
         String slotResult = game.slotTurn();
@@ -53,7 +53,7 @@ public class SlotsGameTest {
     public void slotTurnTest2(){
         // Given
         SlotsGame game = new SlotsGame();
-        String[] slotOptions = new String[]{"*", "~", "#", "o", "+"};
+        String[] slotOptions = new String[]{"***", "~~~", "###", "ooo", "+++"};
 
         // When
         String slotResult = game.slotTurn();
@@ -67,7 +67,7 @@ public class SlotsGameTest {
     public void slotTurnTestFalse(){
         // Given
         SlotsGame game = new SlotsGame();
-        String[] slotOptions = new String[]{"*", "~", "#", "o", "+"};
+        String[] slotOptions = new String[]{"***", "~~~", "###", "ooo", "+++"};
 
         // When
         String slotResult = "9";
@@ -119,7 +119,47 @@ public class SlotsGameTest {
         Assert.assertEquals(expected, actual);
     }
 
+    @Test
+    public void calculateWinningsTest1(){
+        // Given
+        SlotsGame game = new SlotsGame();
+        int expected = 40;
 
+        // When
+        int actual = game.calculateWinnings(4, true);
+
+        // Then
+        Assert.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void calculateWinningsTest2(){
+        // Given
+        SlotsGame game = new SlotsGame();
+        int expected = 100;
+
+        // When
+        int actual = game.calculateWinnings(10, true);
+
+        // Then
+        Assert.assertEquals(expected, actual);
+
+    }
+
+    @Test
+    public void calculateWinningsTestLoss(){
+        // Given
+        SlotsGame game = new SlotsGame();
+        int expected = -4;
+
+        // When
+        int actual = game.calculateWinnings(4, false);
+
+        // Then
+        Assert.assertEquals(expected, actual);
+
+    }
 
 
     @Test
