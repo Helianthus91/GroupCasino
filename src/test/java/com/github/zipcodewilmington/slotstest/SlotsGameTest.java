@@ -36,18 +36,45 @@ public class SlotsGameTest {
 
 
     @Test
-    public void slotTurnTest(){
+    public void slotTurnTest1(){
         // Given
         SlotsGame game = new SlotsGame();
         String[] slotOptions = new String[]{"*", "~", "#", "o", "+"};
-        Boolean expected = true;
 
         // When
         String slotResult = game.slotTurn();
         Boolean actual = Arrays.asList(slotOptions).contains(slotResult);
 
         // Then
-        Assert.assertEquals(expected, actual);
+        Assert.assertTrue(actual);
+    }
+
+    @Test
+    public void slotTurnTest2(){
+        // Given
+        SlotsGame game = new SlotsGame();
+        String[] slotOptions = new String[]{"*", "~", "#", "o", "+"};
+
+        // When
+        String slotResult = game.slotTurn();
+        Boolean actual = Arrays.asList(slotOptions).contains(slotResult);
+
+        // Then
+        Assert.assertTrue(actual);
+    }
+
+    @Test
+    public void slotTurnTestFalse(){
+        // Given
+        SlotsGame game = new SlotsGame();
+        String[] slotOptions = new String[]{"*", "~", "#", "o", "+"};
+
+        // When
+        String slotResult = "9";
+        Boolean actual = Arrays.asList(slotOptions).contains(slotResult);
+
+        // Then
+        Assert.assertFalse(actual);
     }
 
     @Test

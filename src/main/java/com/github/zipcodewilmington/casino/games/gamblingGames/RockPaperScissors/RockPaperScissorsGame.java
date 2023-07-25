@@ -12,7 +12,7 @@ public class RockPaperScissorsGame extends GamblingGame {
 
     public RockPaperScissorsPlayer player;
 
-    public RockPaperScissorsPlayer dealer;
+    public RockPaperScissorsPlayer dealer = new RockPaperScissorsPlayer();
 
     private String dealerThrow;
     private String playerThrow;
@@ -49,7 +49,11 @@ public class RockPaperScissorsGame extends GamblingGame {
 
     }
 
- //   public String throwDealerHand
+
+
+    public String throwDealerHand(){
+
+    }
 
     @Override
     public boolean winCheck() {
@@ -103,7 +107,7 @@ public class RockPaperScissorsGame extends GamblingGame {
         System.out.println("Your current balance is: " + player.getBalance());
         int temp = console.getIntegerInput("Please enter how much you would like to bet: ");
 
-        bet = temp;
+
         return temp;
     }
 

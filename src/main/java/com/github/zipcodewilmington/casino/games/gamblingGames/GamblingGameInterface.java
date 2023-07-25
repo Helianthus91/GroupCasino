@@ -11,7 +11,7 @@ public interface GamblingGameInterface {
 
     int playerBet();
 
-    int calculateWinnings();
+    int calculateWinnings(Integer bet, Boolean wonGame);
 
     void updateBalance();
 
