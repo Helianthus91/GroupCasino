@@ -33,11 +33,11 @@ public class BlackJackGame extends GamblingGame {
 
         //Dealer player and dealer hands
         player.setStartingHand(deckOfCards);
-        System.out.println("player hand" + player.getHand().toString());
-        System.out.println(player.calculateHand()); //Change to dealing hand
+        System.out.println("Player Hand \n" + player.getHand().toString());
+        System.out.println(player.calculateHand() + "\n"); //Change to dealing hand
 
         dealer.setStartingHand(deckOfCards);
-        System.out.println("Dealer hand" + dealer.getHand().toString());
+        System.out.println("Dealer Hand \n" + dealer.getHand().toString() + "\n");
 
         //Ask player options (hit, stay) if not 21.
 
@@ -49,7 +49,7 @@ public class BlackJackGame extends GamblingGame {
             playerChoice = playerBetOption();
             if (playerChoice == 1) {
                 player.hit(deckOfCards.drawCard());
-                System.out.println(player.getHand().toString());
+                System.out.println("\n" + player.getHand().toString());
                 System.out.println(player.calculateHand());
             } else if (playerChoice == 2) {
                 playerTurn = false;
@@ -86,9 +86,9 @@ public class BlackJackGame extends GamblingGame {
 
 
         public String checkWinner(){
-            if (player.calculateHand() == 21 || player.calculateHand() > dealer.calculateHand() || dealer.calculateHand() > 21){
+            if (player.calculateHand() == 21 || (player.calculateHand() > dealer.calculateHand() && dealer.calculateHand() > 21)){
                 return "player";
-            } else if (dealer.calculateHand() == 21 || dealer.calculateHand() > player.calculateHand() || player.calculateHand() > 21){
+            } else if (dealer.calculateHand() == 21 ||( dealer.calculateHand() > player.calculateHand() && player.calculateHand() > 21)){
                 return "dealer";
             }
             return "push";
@@ -146,20 +146,20 @@ public class BlackJackGame extends GamblingGame {
     @Override
     public int playerBet(){
         System.out.println("Your current balance is: " + player.getBalance());
-        int temp = console.getIntegerInput("Please enter how much you would like to bet: ");
+        int temp = console.getIntegerInput("\n Please enter how much you would like to bet: ");
 
         return temp;
     }
     @Override
     public void quitAsk(){
         if (winner.equals("player")){
-            System.out.println("You have won $" + bet + "!");
+            System.out.println("\nYou have won $" + bet + "!");
         }
         else {
-            System.out.println("Sorry, no win this time.");
+            System.out.println("\nSorry, no win this time.");
         }
 
-        String userAnswer = console.getStringInput("Would you like us to deal again? Press 'y' to play again. Press 'n' to quit the game.");
+        String userAnswer = console.getStringInput("\nWould you like us to deal again? \nPress 'y' to play again. Press 'n' to quit the game.");
 
         if (userAnswer.equals("y")){
             playing = true;
