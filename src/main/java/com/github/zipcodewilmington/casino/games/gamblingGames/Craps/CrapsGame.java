@@ -10,11 +10,12 @@ public class CrapsGame extends GamblingGame {
     private CrapsPlayer player;
     private int bet;
 
+
+
     private boolean wonGame;
 
     private boolean playing = true;
 
-    // startGame = entry point to casino game that starts game loop and repeatedly calls playRound method.
     public void run() {
 
        do {
@@ -77,7 +78,9 @@ public class CrapsGame extends GamblingGame {
 
     public void gameIntro() {
         add();
+
         intro();
+
     }
 
     @Override
@@ -149,6 +152,12 @@ public class CrapsGame extends GamblingGame {
 
     public void remove(CrapsPlayer player){
         this.player = null;
+    }
+
+
+
+    public CrapsGame getPlayer() {
+        return player;
     }
 
 

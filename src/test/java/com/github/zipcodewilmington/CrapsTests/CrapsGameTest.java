@@ -1,9 +1,13 @@
 
 package com.github.zipcodewilmington.CrapsTests;
 
+import com.github.zipcodewilmington.casino.PlayerInterface;
 import com.github.zipcodewilmington.casino.games.gamblingGames.Craps.CrapsGame;
+import org.junit.Assert;
 import org.junit.Test;
-import static org.junit.Assert.assertEquals;
+
+import java.util.Arrays;
+
 
 
 public class CrapsGameTest {
