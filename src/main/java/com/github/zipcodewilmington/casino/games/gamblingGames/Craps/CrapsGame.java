@@ -130,6 +130,9 @@ public class CrapsGame extends GamblingGame {
     public int calculateWinner() {
         return 0;
     }
+
+    //Player
+
     public void add(){
         this.player = new CrapsPlayer();
     }
@@ -137,6 +140,7 @@ public class CrapsGame extends GamblingGame {
     public void remove(CrapsPlayer player){
         this.player = null;
     }
+
 
 
 }
