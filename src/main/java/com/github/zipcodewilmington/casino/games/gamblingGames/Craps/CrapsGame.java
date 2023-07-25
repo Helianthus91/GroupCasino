@@ -81,6 +81,7 @@ public class CrapsGame extends GamblingGame {
 
         intro();
 
+
     }
 
     @Override
@@ -144,8 +145,6 @@ public class CrapsGame extends GamblingGame {
         return 0;
     }
 
-    //Player
-
     public void add(){
         this.player = new CrapsPlayer();
     }
@@ -153,7 +152,6 @@ public class CrapsGame extends GamblingGame {
     public void remove(CrapsPlayer player){
         this.player = null;
     }
-
 
 
     public CrapsPlayer getPlayer() {

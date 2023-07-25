@@ -1,68 +1,93 @@
 
 package com.github.zipcodewilmington.CrapsTests;
-
-import com.github.zipcodewilmington.casino.PlayerInterface;
 import com.github.zipcodewilmington.casino.games.gamblingGames.Craps.CrapsGame;
+import com.github.zipcodewilmington.casino.games.gamblingGames.Craps.CrapsPlayer;
 import org.junit.Assert;
-import org.junit.Test;
-
-import java.util.Arrays;
-
-
+import org.junit.jupiter.api.Test;
 
 public class CrapsGameTest {
-    public CrapsGame crapsGame;
-/*
+
     @Test
-    public void testWinOnFirstRoll() {
-        // given
-        mockUserInput("1\n");
-        // when
-        String result = crapsGame.run();
-        // then
-        assertEquals("Congratulations, you win!", result);
+    public void calculateWinningsTest1() {
+        // Given
+        CrapsGame game = new CrapsGame();
+        int expected = 8;
+
+        // When
+        int actual = game.calculateWinnings(4, true);
+
+        // Then
+        Assert.assertEquals(expected, actual);
+
     }
-        // mock user input to roll a 7
     @Test
-    public void testLoseOnFirstRoll() {
-        // given
-        mockUserInput("3\n");
-        // when
-        String result = crapsGame.run();
-        // then
-        assertEquals("Oh no, you lose!", result);
+    public void calculateWinningsTest2(){
+        // Given
+        CrapsGame game = new CrapsGame();
+        int expected = 20;
+
+        // When
+        int actual = game.calculateWinnings(10, true);
+
+        // Then
+        Assert.assertEquals(expected, actual);
+
     }
-        // mock user input to roll a 3
     @Test
-    public void testPointNumberWin() {
-        // given
-        mockUserInput("5\n", "5\n");
-        // when
-        String result = crapsGame.run();
-        // then
-        assertEquals("Congratulations, you win!", result);
+    public void calculateWinningsTestLoss(){
+        // Given
+        CrapsGame game = new CrapsGame();
+        int expected = -4;
+
+        // When
+        int actual = game.calculateWinnings(4, false);
+
+        // Then
+        Assert.assertEquals(expected, actual);
+
     }
-        // mock user input to roll a 5, next roll is also a 5
     @Test
-    public void testPointNumberLose() {
-        // given
-        mockUserInput("5\n", "7\n");
-        // when
-        String result = crapsGame.run();
-        // then
-        assertEquals("Oh no, you lose!", result);
+    public void calculateWinningsTestLoss2(){
+        // Given
+        CrapsGame game = new CrapsGame();
+        int expected = -10;
+
+        // When
+        int actual = game.calculateWinnings(10, false);
+
+        // Then
+        Assert.assertEquals(expected, actual);
+
     }
-        // mock user input to roll a 5, next roll is a 7
-    private void mockUserInput(String... inputs) {
-        StringBuilder stringBuilder = new StringBuilder();
-        for (String input : inputs) {
-            stringBuilder.append(input).append("\n");
-        }
+    @Test
+    public void setBalanceTest(){
+        // Given
+        int expected = 1000;
+
+        // When
+        CrapsPlayer player = new CrapsPlayer();
+        player.setBalance(1000);
+
+        int actual = player.getBalance();
+
+        // Then
+        Assert.assertEquals(expected, actual);
     }
 
+    @Test
+    public void getBalanceTest(){
+        // Given
+        int expected = 1000;
 
- */
+        // When
+        CrapsPlayer player = new CrapsPlayer();
+        player.setBalance(1000);
 
+        int actual = player.getBalance();
+
+        // Then
+        Assert.assertEquals(expected, actual);
+    }
 }
 
 
