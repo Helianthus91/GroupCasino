@@ -82,8 +82,6 @@ public class CrapsGame extends GamblingGame {
 
         System.out.println("Welcome to Craps Casino Game!");
 
-
-
     }
 
     @Override
@@ -147,8 +145,6 @@ public class CrapsGame extends GamblingGame {
         return 0;
     }
 
-    //Player
-
     public void add(){
         this.player = new CrapsPlayer();
     }
@@ -158,8 +154,7 @@ public class CrapsGame extends GamblingGame {
     }
 
 
-
-    public CrapsGame getPlayer() {
+    public CrapsPlayer getPlayer() {
         return player;
     }
 
