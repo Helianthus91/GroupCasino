@@ -56,7 +56,7 @@ public class RockPaperScissorsGame extends GamblingGame {
             System.out.println("The dealer threw: " + dealerThrow);
 
             if (isTie(playerThrow, dealerThrow)){
-                continue;
+
             }
             else {
                 wonGame = winCheck();
@@ -115,7 +115,7 @@ public class RockPaperScissorsGame extends GamblingGame {
         if (isTie(playerThrow, dealerThrow)){
             System.out.println("It's a tie! No one loses");
         }
-        else if (winCheck() == true){
+        else if (wonGame == true){
             System.out.println("You have won $" + bet + "!");
         }
         else {
@@ -146,7 +146,7 @@ public class RockPaperScissorsGame extends GamblingGame {
     }
 
     public boolean isTie(String handSignOfPlayer, String handSignOfDealer){
-        if (handSignOfPlayer == handSignOfDealer){
+        if (handSignOfPlayer.equals(handSignOfDealer)){
             return true;
         }
         return false;

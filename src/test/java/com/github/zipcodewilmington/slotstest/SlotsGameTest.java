@@ -13,14 +13,12 @@ public class SlotsGameTest {
     public void addTest(){
         // Given
         SlotsGame game = new SlotsGame();
-        SlotsPlayer player = new SlotsPlayer();
 
         // When
         game.add();
         SlotsPlayer gamePlayer = game.getPlayer();
 
         // Then
-
         Assert.assertEquals(game.getPlayer(), gamePlayer);
     }
 

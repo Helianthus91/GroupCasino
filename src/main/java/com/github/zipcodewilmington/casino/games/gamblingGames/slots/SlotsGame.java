@@ -102,7 +102,6 @@ public class SlotsGame extends GamblingGame {
 
     @Override
     public int playerBet(){
-        System.out.println("Your current balance is: " + player.getBalance());
         int temp = console.getIntegerInput("Please enter how much you would like to bet: ");
 
         return temp;
