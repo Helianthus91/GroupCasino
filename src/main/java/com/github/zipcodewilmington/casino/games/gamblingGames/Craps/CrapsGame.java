@@ -20,7 +20,6 @@ public class CrapsGame extends GamblingGame {
 
        do {
            boolean reroll = true;
-           add();
            gameIntro();
            bet = playerBet();
 
@@ -80,9 +79,7 @@ public class CrapsGame extends GamblingGame {
     public void gameIntro() {
         add();
 
-        System.out.println("Welcome to Craps Casino Game!");
-
-
+        intro();
 
     }
 
