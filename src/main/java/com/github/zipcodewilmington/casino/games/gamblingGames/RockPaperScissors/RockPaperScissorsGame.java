@@ -36,9 +36,6 @@ public class RockPaperScissorsGame extends GamblingGame {
         this.player = null;
     }
 
-    public static void main(String[] args) {
-        new RockPaperScissorsGame().run();
-    }
 
     public void run() {
         add();
@@ -52,9 +49,10 @@ public class RockPaperScissorsGame extends GamblingGame {
             // Get user throw
             playerThrow = userThrow();
             dealerThrow = dealerThrow();
+            System.out.println("The dealer threw: " + dealerThrow);
 
             if (isTie(playerThrow, dealerThrow)){
-                System.out.println("It's a tie! No one loses");
+                continue;
             }
             else {
                 wonGame = winCheck();
@@ -110,7 +108,10 @@ public class RockPaperScissorsGame extends GamblingGame {
 
     @Override
     public void quitAsk() {
-        if (winCheck() == true){
+        if (isTie(playerThrow, dealerThrow)){
+            System.out.println("It's a tie! No one loses");
+        }
+        else if (winCheck() == true){
             System.out.println("You have won $" + bet + "!");
         }
         else {
@@ -160,13 +161,7 @@ public class RockPaperScissorsGame extends GamblingGame {
     public int playerBet() {
         int temp = console.getIntegerInput("Please enter how much you would like to bet: ");
 
-
         return temp;
-    }
-
-    @Override
-    public int calculateWinnings(){
-        return 0;
     }
 
     public int calculateWinnings(int bet, boolean wonGame) {
@@ -180,13 +175,17 @@ public class RockPaperScissorsGame extends GamblingGame {
 
     @Override
     public void updateBalance() {
-        bet = calculateWinnings();
         int newBalance = player.getBalance() + bet;
         player.setBalance(newBalance);
     }
 
     @Override
     public int calculateWinner() {
+        return 0;
+    }
+
+    @Override
+    public int calculateWinnings(){
         return 0;
     }
 }
