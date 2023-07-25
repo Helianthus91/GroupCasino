@@ -56,20 +56,18 @@ public class RouletteGame extends GamblingGame {
 
     @Override
     public void quitAsk() {
-        if (winCheck() == true){
+        if (winCheck() == true) {
             System.out.println("You have won $" + bet + "!");
-        }
-        else {
+        } else {
             System.out.println("Sorry, no win this time.");
         }
 
         String userAnswer = console.getStringInput("Would you like to spin again? Press 'y' to play again. Press 'n' to quit the game.");
 
 
-        if (userAnswer.equals("y")){
+        if (userAnswer.equals("y")) {
             playing = true;
-        }
-        else {
+        } else {
             playing = false;
         }
 
@@ -78,7 +76,20 @@ public class RouletteGame extends GamblingGame {
         String accountPassword = player.getArcadeAccount().getPassword();
         Integer accountBalance = player.getBalance();
         updateSelectedAccount(accountName, accountPassword, accountBalance);
+    }
 
+    public void add(){
+        this.player = new RoulettePlayer();
+
+    }
+
+    public void remove(RoulettePlayer player){
+        this.player = null;
+    }
+
+    public RoulettePlayer getPlayer(){
+        return player;
+    }
 
     @Override
     public int playerBet() {
@@ -93,6 +104,10 @@ public class RouletteGame extends GamblingGame {
     }
 
     @Override
+    public int calculateWinnings(){
+        return 0;
+    }
+
     public int calculateWinnings(Integer bet, Boolean wonGame) {
         return 0;
     }
