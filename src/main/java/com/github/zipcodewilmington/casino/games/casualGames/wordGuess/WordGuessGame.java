@@ -31,7 +31,7 @@ public class WordGuessGame extends CasualGame {
         correctWord = setTheWord(word);
         amountOfGuesses = getAmountOfGuesses(correctWord);
         currentGuess = getCurrentGuessArray(correctWord);
-        System.out.println(correctWord);
+//        System.out.println(correctWord);   -- for testing only. displays correct word.
         setEmptyArray();
 
         while(game) {
@@ -85,7 +85,7 @@ public class WordGuessGame extends CasualGame {
     @Override
     public void quitAsk() {
         char replayDecision = IOConsole.getCharInput("Would you like to play again? Enter 'N' to quit or any other input to continue");
-        if (replayDecision == 'N'){
+        if (replayDecision == 'N' || replayDecision == 'n'){
             repeatGame = false;
         }
 
