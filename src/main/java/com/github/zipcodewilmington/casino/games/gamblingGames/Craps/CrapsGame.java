@@ -1,6 +1,5 @@
 package com.github.zipcodewilmington.casino.games.gamblingGames.Craps;
 import com.github.zipcodewilmington.casino.games.gamblingGames.GamblingGame;
-import com.github.zipcodewilmington.casino.games.gamblingGames.slots.SlotsPlayer;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -16,7 +15,7 @@ public class CrapsGame extends GamblingGame {
        do {
            boolean reroll = true;
            gameIntro();
-           playerBet();
+           bet = playerBet();
 
            int firstRoll = rollDice();
            int sum = firstRoll;
@@ -107,9 +106,10 @@ public class CrapsGame extends GamblingGame {
         }
 
     @Override
-    public void playerBet(){
+    public int playerBet(){
         System.out.println("Your current balance is: " + player.getBalance());
         bet = console.getIntegerInput("Please enter how much you would like to bet: ");
+        return bet;
     }
 
    public int calculateWinnings() {

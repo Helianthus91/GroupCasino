@@ -53,7 +53,7 @@ public class SlotsGame extends GamblingGame {
             System.out.println("Your current balance is: " + player.getBalance());
 
             // Get player bet
-            playerBet();
+            bet = playerBet();
 
             // Spin slots
             startSlots();
@@ -115,8 +115,9 @@ public class SlotsGame extends GamblingGame {
 
     @Override
     public int calculateWinnings(int bet, boolean wonGame) {
-        if (wonGame == true){
-            return (bet * 2);
+
+        if (wonGame){
+            return (bet * 10);
         }
         else {
             return (bet * -1);
@@ -129,6 +130,15 @@ public class SlotsGame extends GamblingGame {
     public int calculateWinner() {
         return 0;
     }
+
+
+    public void updateBalance(){
+
+        int newBalance = player.getBalance() + bet;
+        player.setBalance(newBalance);
+
+    }
+
 
     public void startSlots(){
         console.getStringInput("Press the return key to spin the slots and (possibly) win some money!");
@@ -183,7 +193,7 @@ public class SlotsGame extends GamblingGame {
     }
 
     public void quitAsk(){
-        if (winCheck() == true){
+        if (wonGame){
             System.out.println("You have won $" + bet + "!");
         }
         else {

@@ -2,7 +2,6 @@ package com.github.zipcodewilmington.casino.games.gamblingGames.RockPaperScissor
 
 import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.games.gamblingGames.GamblingGame;
-import com.github.zipcodewilmington.casino.games.gamblingGames.slots.SlotsPlayer;
 import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
 
@@ -107,6 +106,7 @@ public class RockPaperScissorsGame extends GamblingGame {
     public int playerBet() {
         System.out.println("Your current balance is: " + player.getBalance());
         int temp = console.getIntegerInput("Please enter how much you would like to bet: ");
+
 
         return temp;
     }

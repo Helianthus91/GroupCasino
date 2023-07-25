@@ -65,6 +65,7 @@ public class RouletteGame extends GamblingGame {
 
         String userAnswer = console.getStringInput("Would you like to spin again? Press 'y' to play again. Press 'n' to quit the game.");
 
+
         if (userAnswer.equals("y")){
             playing = true;
         }
@@ -78,7 +79,6 @@ public class RouletteGame extends GamblingGame {
         Integer accountBalance = player.getBalance();
         updateSelectedAccount(accountName, accountPassword, accountBalance);
 
-    }
 
     @Override
     public int playerBet() {
