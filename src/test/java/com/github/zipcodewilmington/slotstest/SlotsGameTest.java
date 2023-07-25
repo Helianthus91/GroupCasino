@@ -16,12 +16,12 @@ public class SlotsGameTest {
         SlotsPlayer player = new SlotsPlayer();
 
         // When
-        game.add(player);
+        game.add();
         SlotsPlayer gamePlayer = game.getPlayer();
 
         // Then
 
-        Assert.assertEquals(player, gamePlayer);
+        Assert.assertEquals(game.getPlayer(), gamePlayer);
     }
 
     @Test
