@@ -89,10 +89,12 @@ public class RouletteGame extends GamblingGame {
     public void updateBalance() {
 
     }
-    @Override
-    public void updateBalance() {
 
+    @Override
+    public int calculateWinnings() {
+        return 0;
     }
+
     @Override
     public int calculateWinner() {
         return 0;
