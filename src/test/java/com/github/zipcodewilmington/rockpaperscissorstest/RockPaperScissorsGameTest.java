@@ -3,6 +3,7 @@ package com.github.zipcodewilmington.rockpaperscissorstest;
 import com.github.zipcodewilmington.casino.games.gamblingGames.RockPaperScissors.RockPaperScissorsPlayer;
 import com.github.zipcodewilmington.casino.games.gamblingGames.RockPaperScissors.RockPaperScissorsGame;
 import com.github.zipcodewilmington.casino.games.gamblingGames.slots.SlotsGame;
+import com.github.zipcodewilmington.casino.games.gamblingGames.slots.SlotsPlayer;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -116,6 +117,46 @@ public class RockPaperScissorsGameTest {
 
         // Then
         Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void getWinningMoveRock(){
+        // Given
+        RockPaperScissorsGame game = new RockPaperScissorsGame();
+        String expected = "paper";
+
+        // When
+        String actual = game.getWinningMove("rock");
+
+        // Then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void getWinningMoveScissor(){
+        // Given
+        RockPaperScissorsGame game = new RockPaperScissorsGame();
+        String expected = "rock";
+
+        // When
+        String actual = game.getWinningMove("scissor");
+
+        // Then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
+    public void addTest(){
+        // Given
+        RockPaperScissorsGame game = new RockPaperScissorsGame();
+
+        // When
+        game.add();
+        RockPaperScissorsPlayer gamePlayer = game.getPlayer();
+
+        // Then
+
+        Assert.assertEquals(game.getPlayer(), gamePlayer);
     }
 
 }

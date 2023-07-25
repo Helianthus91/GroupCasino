@@ -36,6 +36,10 @@ public class RockPaperScissorsGame extends GamblingGame {
         this.player = null;
     }
 
+    public RockPaperScissorsPlayer getPlayer(){
+        return player;
+    }
+
 
     public void run() {
         add();

@@ -156,7 +156,7 @@ public class CrapsGame extends GamblingGame {
 
 
 
-    public CrapsGame getPlayer() {
+    public CrapsPlayer getPlayer() {
         return player;
     }
 
