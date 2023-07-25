@@ -9,6 +9,8 @@ public class CrapsGame extends GamblingGame {
     private CrapsPlayer player;
     private int bet;
 
+    private boolean wonGame;
+
     // startGame = entry point to casino game that starts game loop and repeatedly calls playRound method.
     public void run() {
 
@@ -68,7 +70,7 @@ public class CrapsGame extends GamblingGame {
 
     public void gameIntro() {
         add();
-        System.out.println("Welcome to Craps Casino Game!");
+
 
 
 
@@ -76,7 +78,7 @@ public class CrapsGame extends GamblingGame {
 
     @Override
     public void intro() {
-
+        System.out.println("Welcome to Craps Casino Game!");
     }
 
     @Override
@@ -112,24 +114,32 @@ public class CrapsGame extends GamblingGame {
         return bet;
     }
 
-   public int calculateWinnings() {
-        if (winCheck()){
-            return (bet * 10);
-        } else {
-            return bet * -1;
-        }
-   }
-
     @Override
     public void updateBalance() {
         bet = calculateWinnings();
-     int newBalance = player.getBalance() + bet;
-            player.setBalance(newBalance);}
+        int newBalance = player.getBalance() + bet;
+        player.setBalance(newBalance);}
+
+    @Override
+    public int calculateWinnings(){
+        return 0;
+    }
+
+    public int calculateWinnings(Integer bet, Boolean wonGame) {
+        if (wonGame){
+            return (bet * 2);
+        } else {
+            return bet * -1;
+        }
+    }
 
     @Override
     public int calculateWinner() {
         return 0;
     }
+
+    //Player
+
     public void add(){
         this.player = new CrapsPlayer();
     }
@@ -137,6 +147,7 @@ public class CrapsGame extends GamblingGame {
     public void remove(CrapsPlayer player){
         this.player = null;
     }
+
 
 
 }

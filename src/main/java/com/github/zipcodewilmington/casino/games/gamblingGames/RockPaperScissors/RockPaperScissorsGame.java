@@ -5,6 +5,8 @@ import com.github.zipcodewilmington.casino.games.gamblingGames.GamblingGame;
 import com.github.zipcodewilmington.utils.AnsiColor;
 import com.github.zipcodewilmington.utils.IOConsole;
 
+import java.util.Random;
+
 public class RockPaperScissorsGame extends GamblingGame {
     protected static final String ROCK = "rock";
     protected static final String PAPER = "paper";
@@ -12,7 +14,7 @@ public class RockPaperScissorsGame extends GamblingGame {
 
     public RockPaperScissorsPlayer player;
 
-    public RockPaperScissorsPlayer dealer;
+    public RockPaperScissorsPlayer dealer = new RockPaperScissorsPlayer();
 
     private String dealerThrow;
     private String playerThrow;
@@ -21,7 +23,7 @@ public class RockPaperScissorsGame extends GamblingGame {
 
     private IOConsole console = new IOConsole();
 
-    private IOConsole colorConsole = new IOConsole(AnsiColor.RED);
+    private boolean wonGame;
 
     private boolean playing = true;
 
@@ -34,10 +36,33 @@ public class RockPaperScissorsGame extends GamblingGame {
         this.player = null;
     }
 
+
     public void run() {
         add();
         intro();
+        while (playing == true) {
+            System.out.println("Your current balance is: " + player.getBalance());
 
+            // Get player bet
+            bet = playerBet();
+
+            // Get user throw
+            playerThrow = userThrow();
+            dealerThrow = dealerThrow();
+            System.out.println("The dealer threw: " + dealerThrow);
+
+            if (isTie(playerThrow, dealerThrow)){
+                continue;
+            }
+            else {
+                wonGame = winCheck();
+                // Update bet based on result of spin
+                bet = calculateWinnings(bet, wonGame);
+                // Update player balance with new bet
+                updateBalance();
+            }
+            quitAsk();
+        }
 
     }
 
@@ -49,16 +74,44 @@ public class RockPaperScissorsGame extends GamblingGame {
 
     }
 
- //   public String throwDealerHand
+    public String userThrow(){
+        String user = console.getStringInput("Enter 'rock', 'paper', or 'scissor'");
 
-    @Override
-    public boolean winCheck() {
-        return true;
+        return user;
+    }
+
+
+    public String dealerThrow(){
+        Random rand = new Random();
+        int numThrow = rand.nextInt(3);
+
+        if (numThrow == 0){
+            return ROCK;
+        }
+        else if (numThrow == 1){
+            return PAPER;
+        }
+        else {
+            return SCISSOR;
+        }
     }
 
     @Override
+    public boolean winCheck() {
+        if (getWinner(playerThrow, dealerThrow) == player){
+            return true;
+        }
+        return false;
+    }
+
+
+
+    @Override
     public void quitAsk() {
-        if (winCheck() == true){
+        if (isTie(playerThrow, dealerThrow)){
+            System.out.println("It's a tie! No one loses");
+        }
+        else if (winCheck() == true){
             System.out.println("You have won $" + bet + "!");
         }
         else {
@@ -88,28 +141,31 @@ public class RockPaperScissorsGame extends GamblingGame {
         else return ROCK;
     }
 
+    public boolean isTie(String handSignOfPlayer, String handSignOfDealer){
+        if (handSignOfPlayer == handSignOfDealer){
+            return true;
+        }
+        return false;
+    }
 
-    public String getWinner(String handSignOfPlayer1, String handSignOfPlayer2) {
-        if (getWinningMove(handSignOfPlayer1) == handSignOfPlayer2){
-            return handSignOfPlayer2;
+    public RockPaperScissorsPlayer getWinner(String handSignOfPlayer, String handSignOfDealer) {
+        if (getWinningMove(handSignOfPlayer) == handSignOfDealer){
+            return dealer;
         }
         else{
-            return handSignOfPlayer1;
+            return player;
         }
     }
 
     @Override
     public int playerBet() {
-        System.out.println("Your current balance is: " + player.getBalance());
         int temp = console.getIntegerInput("Please enter how much you would like to bet: ");
 
-        bet = temp;
         return temp;
     }
 
-    @Override
-    public int calculateWinnings() {
-        if (winCheck() == true){
+    public int calculateWinnings(int bet, boolean wonGame) {
+        if (wonGame){
             return (bet * 2);
         }
         else {
@@ -119,13 +175,17 @@ public class RockPaperScissorsGame extends GamblingGame {
 
     @Override
     public void updateBalance() {
-        bet = calculateWinnings();
         int newBalance = player.getBalance() + bet;
         player.setBalance(newBalance);
     }
 
     @Override
     public int calculateWinner() {
+        return 0;
+    }
+
+    @Override
+    public int calculateWinnings(){
         return 0;
     }
 }

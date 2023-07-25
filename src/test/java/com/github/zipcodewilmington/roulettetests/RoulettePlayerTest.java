@@ -1,21 +1,17 @@
-package com.github.zipcodewilmington.crapstests;
+package com.github.zipcodewilmington.roulettetests;
 
-import com.github.zipcodewilmington.casino.games.gamblingGames.Craps.CrapsPlayer;
 import com.github.zipcodewilmington.casino.games.gamblingGames.slots.SlotsPlayer;
 import org.junit.Assert;
-import org.junit.jupiter.api.Test;
-import static org.junit.Assert.assertEquals;
+import org.junit.Test;
 
-public class CrapsPlayerTest {
-
-
+public class RoulettePlayerTest {
     @Test
     public void setBalanceTest(){
         // Given
         int expected = 1000;
 
         // When
-        CrapsPlayer player = new CrapsPlayer();
+        SlotsPlayer player = new SlotsPlayer();
         player.setBalance(1000);
 
         int actual = player.getBalance();
@@ -30,7 +26,7 @@ public class CrapsPlayerTest {
         int expected = 1000;
 
         // When
-        CrapsPlayer player = new CrapsPlayer();
+        SlotsPlayer player = new SlotsPlayer();
         player.setBalance(1000);
 
         int actual = player.getBalance();
@@ -38,9 +34,4 @@ public class CrapsPlayerTest {
         // Then
         Assert.assertEquals(expected, actual);
     }
-
-
 }
-
-
-

@@ -1,5 +1,7 @@
 package com.github.zipcodewilmington.casino.games.gamblingGames.Roulette;
+import com.github.zipcodewilmington.casino.CasinoAccount;
 import com.github.zipcodewilmington.casino.games.gamblingGames.GamblingGame;
+
 import java.util.Scanner;
 import java.util.Random;
 public class RouletteGame extends GamblingGame {
@@ -23,6 +25,7 @@ public class RouletteGame extends GamblingGame {
             if (betAmount > balance) {
                 System.out.println("Relax, YOU DON'T HAVE ENOUGH MONEY! HIT THE ATM ASAP!");
                 continue;
+
             }
             String prediction = askForPrediction();
             performSpin();
@@ -75,17 +78,20 @@ public class RouletteGame extends GamblingGame {
     }
     @Override
     public void quitAsk() {
+
     }
     @Override
     public int playerBet() {
         return 0;
-    }
-    @Override
-    public int calculateWinnings() {
-        return 0;
+
     }
     @Override
     public void updateBalance() {
+
+    }
+    @Override
+    public void updateBalance() {
+
     }
     @Override
     public int calculateWinner() {
