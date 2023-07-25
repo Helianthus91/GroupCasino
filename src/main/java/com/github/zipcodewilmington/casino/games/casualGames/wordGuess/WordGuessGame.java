@@ -70,10 +70,11 @@ public class WordGuessGame extends CasualGame {
 
     @Override
     public void intro() {
-        console.println("Welcome to the Word Guess Game!");
-        console.println("No money is on the line here.");
-        console.println("We have a random word. You have as many chances to guess as there are letters in the word!" + "\n" +
-                "lets begin...");
+        console.println("Welcome to the Word Guess Game! \n");
+        console.println("No money is on the line here.\n");
+        console.println("Guess the hidden word to win \n" +
+                "One guess per letter in the word \n" +
+                "lets begin...\n");
 
     }
 
@@ -84,7 +85,7 @@ public class WordGuessGame extends CasualGame {
 
     @Override
     public void quitAsk() {
-        char replayDecision = IOConsole.getCharInput("Would you like to play again? Enter 'N' to quit or any other input to continue");
+        char replayDecision = IOConsole.getCharInput("\nWould you like to play again? Enter 'N' to quit or any other input to continue");
         if (replayDecision == 'N' || replayDecision == 'n'){
             repeatGame = false;
         }
@@ -139,7 +140,7 @@ public class WordGuessGame extends CasualGame {
                 System.out.print(currentGuess[i] + " ");
             }
         }
-        System.out.printf("You have %d guesses remaining.\n\n", amountOfGuesses);
+        System.out.printf("\n You have %d guesses remaining.\n\n", amountOfGuesses);
     }
 
     public char getUserGuess(){
