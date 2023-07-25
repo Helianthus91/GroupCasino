@@ -1,5 +1,30 @@
-//package com.github.zipcodewilmington.CrapsTests;
+package com.github.zipcodewilmington.CrapsTests;
+
+import com.github.zipcodewilmington.casino.PlayerInterface;
+import com.github.zipcodewilmington.casino.games.gamblingGames.Craps.CrapsGame;
+import org.junit.Assert;
+import org.junit.Test;
+
+import java.util.Arrays;
+
+public class CrapsGameTest {
+
+//    @Test
+//    public void addTest() {
+//        // Given
+//        CrapsGame game = new CrapsGame();
+//        CrapsGame player = new CrapsGame();
 //
+//        // When
+//        game.add(player);
+//        CrapsGame gamePlayer = game.getPlayer();
+//
+//        // Then
+//
+//        Assert.assertEquals(player, gamePlayer);
+//    }
+}
+
 //import com.github.zipcodewilmington.casino.games.gamblingGames.Craps.CrapsGame;
 //import org.junit.Test;
 //import static org.junit.Assert.assertEquals;

@@ -1,6 +1,5 @@
 package com.github.zipcodewilmington.casino.games.gamblingGames.Craps;
 import com.github.zipcodewilmington.casino.games.gamblingGames.GamblingGame;
-import com.github.zipcodewilmington.casino.games.gamblingGames.slots.SlotsPlayer;
 
 import java.util.Random;
 import java.util.Scanner;
@@ -10,7 +9,6 @@ public class CrapsGame extends GamblingGame {
     private CrapsPlayer player;
     private int bet;
 
-    // startGame = entry point to casino game that starts game loop and repeatedly calls playRound method.
     public void run() {
 
        do {
@@ -70,9 +68,6 @@ public class CrapsGame extends GamblingGame {
     public void gameIntro() {
         add();
         System.out.println("Welcome to Craps Casino Game!");
-
-
-
     }
 
     @Override
@@ -139,4 +134,7 @@ public class CrapsGame extends GamblingGame {
     }
 
 
+    public CrapsGame getPlayer() {
+        return getPlayer();
+    }
 }
