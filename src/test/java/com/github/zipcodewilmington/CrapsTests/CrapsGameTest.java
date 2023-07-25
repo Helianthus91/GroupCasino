@@ -34,6 +34,19 @@ public class CrapsGameTest {
 
     }
     @Test
+    public void calculateWinningsTest3(){
+        // Given
+        CrapsGame game = new CrapsGame();
+        int expected = 100;
+
+        // When
+        int actual = game.calculateWinnings(50, true);
+
+        // Then
+        Assert.assertEquals(expected, actual);
+
+    }
+    @Test
     public void calculateWinningsTestLoss(){
         // Given
         CrapsGame game = new CrapsGame();
@@ -54,6 +67,20 @@ public class CrapsGameTest {
 
         // When
         int actual = game.calculateWinnings(10, false);
+
+        // Then
+        Assert.assertEquals(expected, actual);
+
+    }
+    @Test
+
+    public void calculateWinningsTestLoss3(){
+        // Given
+        CrapsGame game = new CrapsGame();
+        int expected = -20;
+
+        // When
+        int actual = game.calculateWinnings(20, false);
 
         // Then
         Assert.assertEquals(expected, actual);
