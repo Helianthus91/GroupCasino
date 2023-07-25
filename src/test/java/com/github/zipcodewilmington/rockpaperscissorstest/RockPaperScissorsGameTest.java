@@ -25,6 +25,20 @@ public class RockPaperScissorsGameTest {
     }
 
     @Test
+    public void dealerThrowTest2(){
+        // Given
+        RockPaperScissorsGame game = new RockPaperScissorsGame();
+        String[] test = new String[] {"rock", "paper", "scissor"};
+        boolean expected = true;
+
+        // When
+        boolean actual = Arrays.asList(test).contains(game.dealerThrow());
+
+        // Then
+        Assert.assertEquals(expected, actual);
+    }
+
+    @Test
     public void dealerThrowTestFalse(){
         // Given
         RockPaperScissorsGame game = new RockPaperScissorsGame();
@@ -158,5 +172,7 @@ public class RockPaperScissorsGameTest {
 
         Assert.assertEquals(game.getPlayer(), gamePlayer);
     }
+
+
 
 }
