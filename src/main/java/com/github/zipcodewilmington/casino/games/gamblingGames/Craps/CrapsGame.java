@@ -19,7 +19,6 @@ public class CrapsGame extends GamblingGame {
 
        do {
            boolean reroll = true;
-           add();
            gameIntro();
            bet = playerBet();
 
@@ -78,10 +77,7 @@ public class CrapsGame extends GamblingGame {
 
     public void gameIntro() {
         add();
-
-
-
-
+        intro();
     }
 
     @Override
